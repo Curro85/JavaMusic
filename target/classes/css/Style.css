@@ -1,0 +1,31 @@
+.bottom_bar {
+	-fx-background-color: #b7b7b7;
+}
+
+.body_background {
+	-fx-background-color: #393939 ;
+}
+
+.menu_bar {
+	-fx-background-color: #e2e2e2;
+	-fx-background-radius:0 30 30 0;
+}
+
+.playing-song-border {
+	-fx-border-color: #ffffff;
+	-fx-border-radius: 10;
+	-fx-border-width: 3;
+}
+
+.transparent {
+	-fx-background-color: rgba(0,0,0,0);
+}
+
+.slider {
+	-fx-control-inner-background: #393939;
+	-fx-shadow-highlight-color: #393939;
+}
+
+.transparent:hover {
+	-fx-background-color: white;
+}

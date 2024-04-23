@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="756.0"
+	prefWidth="1220.0" xmlns="http://javafx.com/javafx/21"
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MainController">
+	<children>
+		<HBox layoutX="8.0" layoutY="642.0" prefHeight="60.0"
+			prefWidth="200.0" styleClass="bottom_bar"
+			stylesheets="@../css/Style.css" AnchorPane.bottomAnchor="0.0"
+			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+			<children>
+				<Button fx:id="back" mnemonicParsing="false"
+					prefHeight="62.0" prefWidth="52.0" styleClass="transparent"
+					stylesheets="@../css/Style.css">
+					<graphic>
+						<ImageView fitHeight="49.0" fitWidth="43.0"
+							pickOnBounds="true" preserveRatio="true">
+							<image>
+								<Image url="@../img/last.png" />
+							</image>
+						</ImageView>
+					</graphic>
+					<HBox.margin>
+						<Insets left="50.0" />
+					</HBox.margin>
+				</Button>
+				<Button fx:id="startStop" mnemonicParsing="false"
+					onAction="#reproducir" prefHeight="62.0" prefWidth="52.0"
+					styleClass="transparent" stylesheets="@../css/Style.css">
+					<graphic>
+						<ImageView fx:id="playImg" fitHeight="49.0"
+							fitWidth="43.0" pickOnBounds="true" preserveRatio="true"
+							visible="true">
+							<image>
+								<Image url="@../img/play.png" />
+							</image>
+						</ImageView>
+						<ImageView fx:id="pauseImg" fitHeight="49.0"
+							fitWidth="43.0" pickOnBounds="true" preserveRatio="true"
+							visible="false">
+							<image>
+								<Image url="@../img/pause.png" />
+							</image>
+						</ImageView>
+					</graphic>
+				</Button>
+				<Button fx:id="stop" mnemonicParsing="false"
+					onAction="#detener" prefHeight="62.0" prefWidth="52.0"
+					styleClass="transparent" stylesheets="@../css/Style.css">
+					<graphic>
+						<ImageView fitHeight="49.0" fitWidth="43.0"
+							pickOnBounds="true" preserveRatio="true">
+							<image>
+								<Image url="@../img/stop.png" />
+							</image>
+						</ImageView>
+					</graphic>
+				</Button>
+				<Button fx:id="next" mnemonicParsing="false"
+					prefHeight="62.0" prefWidth="52.0" styleClass="transparent"
+					stylesheets="@../css/Style.css">
+					<graphic>
+						<ImageView fitHeight="49.0" fitWidth="43.0"
+							pickOnBounds="true" preserveRatio="true">
+							<image>
+								<Image url="@../img/next.png" />
+							</image>
+						</ImageView>
+					</graphic>
+				</Button>
+				<Label alignment="CENTER" prefHeight="60.0" prefWidth="64.0"
+					text="01:23">
+					<HBox.margin>
+						<Insets left="20.0" />
+					</HBox.margin>
+				</Label>
+				<Slider prefHeight="67.0" prefWidth="662.0" value="50.0" />
+				<Label alignment="CENTER" prefHeight="60.0" prefWidth="64.0"
+					text="03:44">
+					<HBox.margin>
+						<Insets right="20.0" />
+					</HBox.margin>
+				</Label>
+				<Button mnemonicParsing="false" prefHeight="62.0"
+					prefWidth="52.0" styleClass="transparent"
+					stylesheets="@../css/Style.css">
+					<graphic>
+						<ImageView fitHeight="49.0" fitWidth="30.0"
+							pickOnBounds="true" preserveRatio="true">
+							<image>
+								<Image url="@../img/crear_playlist.png" />
+							</image>
+						</ImageView>
+					</graphic>
+				</Button>
+				<Button mnemonicParsing="false" prefHeight="62.0"
+					prefWidth="52.0" styleClass="transparent"
+					stylesheets="@../css/Style.css">
+					<graphic>
+						<ImageView fitHeight="49.0" fitWidth="30.0"
+							pickOnBounds="true" preserveRatio="true">
+							<image>
+								<Image url="@../img/configuracion.png" />
+							</image>
+						</ImageView>
+					</graphic>
+					<HBox.margin>
+						<Insets right="50.0" />
+					</HBox.margin>
+				</Button>
+			</children>
+		</HBox>
+		<BorderPane layoutX="318.0" layoutY="168.0"
+			prefHeight="696.0" prefWidth="1220.0" styleClass="body_background"
+			stylesheets="@../css/Style.css" AnchorPane.bottomAnchor="60.0"
+			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+			AnchorPane.topAnchor="0.0">
+			<top>
+				<Pane prefHeight="105.0" prefWidth="1220.0"
+					BorderPane.alignment="CENTER">
+					<children>
+						<ImageView fitHeight="80.0" fitWidth="121.0"
+							layoutX="14.0" layoutY="14.0" pickOnBounds="true"
+							preserveRatio="true">
+							<image>
+								<Image url="@../img/carlton.png" />
+							</image>
+						</ImageView>
+						<Label layoutX="98.0" layoutY="21.0" text="JavaMusic"
+							textFill="WHITE">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</Label>
+					</children>
+				</Pane>
+			</top>
+			<left>
+				<Pane prefHeight="200.0" prefWidth="200.0"
+					BorderPane.alignment="CENTER">
+					<children>
+						<VBox alignment="CENTER" layoutY="140.0" prefHeight="305.0"
+							prefWidth="55.0" styleClass="menu_bar"
+							stylesheets="@../css/Style.css">
+							<children>
+								<ImageView fitHeight="30.0" fitWidth="27.0"
+									pickOnBounds="true" preserveRatio="true">
+									<image>
+										<Image url="@../img/darkmode.png" />
+									</image>
+								</ImageView>
+								<ImageView fitHeight="30.0" fitWidth="27.0"
+									layoutX="24.0" layoutY="149.0" pickOnBounds="true"
+									preserveRatio="true">
+									<image>
+										<Image url="@../img/perfil.png" />
+									</image>
+									<VBox.margin>
+										<Insets top="20.0" />
+									</VBox.margin>
+								</ImageView>
+								<ImageView fitHeight="30.0" fitWidth="27.0"
+									layoutX="24.0" layoutY="173.0" pickOnBounds="true"
+									preserveRatio="true">
+									<image>
+										<Image url="@../img/crear_playlist.png" />
+									</image>
+									<VBox.margin>
+										<Insets top="20.0" />
+									</VBox.margin>
+								</ImageView>
+								<ImageView fitHeight="30.0" fitWidth="27.0"
+									layoutX="24.0" layoutY="196.0" pickOnBounds="true"
+									preserveRatio="true">
+									<image>
+										<Image url="@../img/informacion_sobre_la_app.png" />
+									</image>
+									<VBox.margin>
+										<Insets top="20.0" />
+									</VBox.margin>
+								</ImageView>
+							</children>
+						</VBox>
+						<ImageView fx:id="dancer" fitHeight="150.0"
+							fitWidth="150.0" layoutY="445.0" pickOnBounds="true"
+							preserveRatio="true" visible="false">
+							<image>
+								<Image url="@../img/carlton-dance.gif" />
+							</image>
+						</ImageView>
+					</children>
+				</Pane>
+			</left>
+			<center>
+				<HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0"
+					BorderPane.alignment="CENTER">
+					<children>
+						<ImageView fitHeight="245.0" fitWidth="272.0"
+							pickOnBounds="true" preserveRatio="true">
+							<image>
+								<Image url="@../img/Cangreho.png" />
+							</image>
+						</ImageView>
+						<VBox alignment="CENTER" prefHeight="510.0" prefWidth="431.0">
+							<HBox.margin>
+								<Insets left="50.0" />
+							</HBox.margin>
+							<children>
+								<HBox prefHeight="56.0" prefWidth="348.0">
+									<children>
+										<Label prefHeight="56.0" prefWidth="153.0"
+											text="Recientes" textFill="WHITE">
+											<font>
+												<Font name="Rockwell Condensed" size="42.0" />
+											</font>
+										</Label>
+									</children>
+								</HBox>
+								<HBox alignment="CENTER" prefHeight="56.0"
+									prefWidth="348.0" styleClass="playing-song-border"
+									stylesheets="@../css/Style.css">
+									<children>
+										<ImageView fitHeight="29.0" fitWidth="31.0"
+											pickOnBounds="true" preserveRatio="true">
+											<image>
+												<Image url="@../img/play.png" />
+											</image>
+										</ImageView>
+										<Label prefHeight="30.0" prefWidth="274.0"
+											text="In Dying Days" textFill="#ababab">
+											<font>
+												<Font size="20.0" />
+											</font>
+											<HBox.margin>
+												<Insets left="20.0" />
+											</HBox.margin>
+										</Label>
+										<Label prefHeight="30.0" prefWidth="50.0" text="03:44"
+											textFill="#ababab">
+											<font>
+												<Font size="20.0" />
+											</font>
+										</Label>
+									</children>
+								</HBox>
+								<HBox alignment="CENTER" layoutX="10.0" layoutY="66.0"
+									prefHeight="56.0" prefWidth="348.0">
+									<children>
+										<Label alignment="CENTER" prefHeight="30.0"
+											prefWidth="29.0" text="2" textFill="#ababab">
+											<font>
+												<Font size="20.0" />
+											</font>
+										</Label>
+										<Label prefHeight="30.0" prefWidth="274.0"
+											text="Picture Me Rollin'" textFill="#ababab">
+											<font>
+												<Font size="20.0" />
+											</font>
+											<HBox.margin>
+												<Insets left="20.0" />
+											</HBox.margin>
+										</Label>
+										<Label prefHeight="30.0" prefWidth="50.0" text="05:14"
+											textFill="#ababab">
+											<font>
+												<Font size="20.0" />
+											</font>
+										</Label>
+									</children>
+									<VBox.margin>
+										<Insets top="10.0" />
+									</VBox.margin>
+								</HBox>
+								<HBox alignment="CENTER" prefHeight="56.0"
+									prefWidth="348.0">
+									<children>
+										<Label alignment="CENTER" prefHeight="30.0"
+											prefWidth="29.0" text="3" textFill="#ababab">
+											<font>
+												<Font size="20.0" />
+											</font>
+										</Label>
+										<Label prefHeight="30.0" prefWidth="274.0"
+											text="How To Save A Life" textFill="#ababab">
+											<font>
+												<Font size="20.0" />
+											</font>
+											<HBox.margin>
+												<Insets left="20.0" />
+											</HBox.margin>
+										</Label>
+										<Label prefHeight="30.0" prefWidth="50.0" text="04:27"
+											textFill="#ababab">
+											<font>
+												<Font size="20.0" />
+											</font>
+										</Label>
+									</children>
+									<VBox.margin>
+										<Insets top="10.0" />
+									</VBox.margin>
+								</HBox>
+								<HBox alignment="CENTER" prefHeight="56.0"
+									prefWidth="348.0">
+									<children>
+										<Label alignment="CENTER" prefHeight="30.0"
+											prefWidth="29.0" text="4" textFill="#ababab">
+											<font>
+												<Font size="20.0" />
+											</font>
+										</Label>
+										<Label prefHeight="30.0" prefWidth="274.0"
+											text="Divenire" textFill="#ababab">
+											<font>
+												<Font size="20.0" />
+											</font>
+											<HBox.margin>
+												<Insets left="20.0" />
+											</HBox.margin>
+										</Label>
+										<Label prefHeight="30.0" prefWidth="50.0" text="06:43"
+											textFill="#ababab">
+											<font>
+												<Font size="20.0" />
+											</font>
+										</Label>
+									</children>
+									<VBox.margin>
+										<Insets top="10.0" />
+									</VBox.margin>
+								</HBox>
+								<HBox alignment="CENTER" prefHeight="56.0"
+									prefWidth="348.0">
+									<children>
+										<Label alignment="CENTER" prefHeight="30.0"
+											prefWidth="29.0" text="5" textFill="#ababab">
+											<font>
+												<Font size="20.0" />
+											</font>
+										</Label>
+										<Label prefHeight="30.0" prefWidth="274.0"
+											text="You Know How We Do It" textFill="#ababab">
+											<font>
+												<Font size="20.0" />
+											</font>
+											<HBox.margin>
+												<Insets left="20.0" />
+											</HBox.margin>
+										</Label>
+										<Label prefHeight="30.0" prefWidth="50.0" text="03:53"
+											textFill="#ababab">
+											<font>
+												<Font size="20.0" />
+											</font>
+										</Label>
+									</children>
+									<VBox.margin>
+										<Insets top="10.0" />
+									</VBox.margin>
+								</HBox>
+								<HBox alignment="CENTER" prefHeight="56.0"
+									prefWidth="348.0">
+									<children>
+										<Separator prefHeight="45.0" prefWidth="114.0" />
+										<Label alignment="CENTER" prefHeight="30.0"
+											prefWidth="92.0" text="More" textFill="#ababab">
+											<font>
+												<Font name="System Bold" size="20.0" />
+											</font>
+											<HBox.margin>
+												<Insets left="20.0" />
+											</HBox.margin>
+										</Label>
+										<Separator prefHeight="45.0" prefWidth="114.0" />
+									</children>
+									<VBox.margin>
+										<Insets top="10.0" />
+									</VBox.margin>
+								</HBox>
+							</children>
+						</VBox>
+					</children>
+				</HBox>
+			</center>
+		</BorderPane>
+	</children>
+</AnchorPane>
