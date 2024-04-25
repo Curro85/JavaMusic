@@ -223,7 +223,7 @@
 							<children>
 								<HBox prefHeight="56.0" prefWidth="348.0">
 									<children>
-										<Label prefHeight="56.0" prefWidth="153.0"
+										<Label prefHeight="62.0" prefWidth="432.0"
 											text="Recientes" textFill="WHITE">
 											<font>
 												<Font name="Rockwell Condensed" size="42.0" />

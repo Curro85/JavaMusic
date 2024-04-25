@@ -1,12 +1,13 @@
 package app;
 
+import java.io.File;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.event.ActionEvent;
+import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.image.ImageView;
-import java.io.File;
 
 public class MainController {
 
@@ -44,7 +45,7 @@ public class MainController {
 	@FXML
 	private void reproducir(ActionEvent e) {
 		if (mp == null) {
-			String song = "C:\\Users\\Curro\\Desktop\\Tareas Clases\\DAW\\Programación\\proyectos\\javafx-fxml\\src\\main\\resources\\music\\boomblast bass+speed.mp3";
+			String song = "D:/Programación/proyectos/JavaMusic/src/main/resources/music/boomblast bass+speed.mp3";
 			Media sound = new Media(new File(song).toURI().toString());
 			mp = new MediaPlayer(sound);
 		}
