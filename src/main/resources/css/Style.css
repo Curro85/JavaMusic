@@ -29,3 +29,11 @@
 .transparent:hover {
 	-fx-background-color: white;
 }
+
+.john {
+	-fx-background-color: red;
+}
+
+.john:hover {
+	-fx-background-color: #393939;
+}

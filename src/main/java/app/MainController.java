@@ -1,7 +1,10 @@
 package app;
 
 import java.io.File;
+import java.sql.Connection;
 
+import app.model.cancionDAO;
+import app.utils.UtilsBD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -25,6 +28,9 @@ public class MainController {
 	private Button stop;
 
 	@FXML
+	private Button john;
+
+	@FXML
 	private ImageView dancer;
 
 	@FXML
@@ -36,6 +42,9 @@ public class MainController {
 	private MediaPlayer mp;
 	private boolean isPlaying = false;
 
+	// Conexion con BD
+	Connection con = UtilsBD.conectarBD();
+
 	// Metodos
 	@FXML
 	private void initialize() {
@@ -45,7 +54,7 @@ public class MainController {
 	@FXML
 	private void reproducir(ActionEvent e) {
 		if (mp == null) {
-			String song = "D:/Programación/proyectos/JavaMusic/src/main/resources/music/boomblast bass+speed.mp3";
+			String song = cancionDAO.cargarCancion(con, 1);
 			Media sound = new Media(new File(song).toURI().toString());
 			mp = new MediaPlayer(sound);
 		}
@@ -77,5 +86,21 @@ public class MainController {
 			pauseImg.setVisible(false);
 			startStop.setGraphic(playImg);
 		}
+	}
+
+	@FXML
+	private void john(ActionEvent e) {
+		if (mp != null) {
+			mp.stop();
+			isPlaying = false;
+		}
+
+		String song = "C:/Users/Curro/Desktop/Tareas Clases/DAW/Programación/proyectos/javafx-fxml/src/main/resources/music/john-cena.mp3";
+		Media sound = new Media(new File(song).toURI().toString());
+		mp = new MediaPlayer(sound);
+		mp.play();
+
+		isPlaying = true;
+
 	}
 }

@@ -24,7 +24,7 @@
 			stylesheets="@../css/Style.css" AnchorPane.bottomAnchor="0.0"
 			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 			<children>
-				<Button fx:id="back" mnemonicParsing="false"
+				<Button fx:id="last" mnemonicParsing="false"
 					prefHeight="62.0" prefWidth="52.0" styleClass="transparent"
 					stylesheets="@../css/Style.css">
 					<graphic>
@@ -147,6 +147,12 @@
 								<Font size="18.0" />
 							</font>
 						</Label>
+						<Button fx:id="john" layoutX="1198.0" layoutY="9.0"
+							mnemonicParsing="false" onAction="#john" prefHeight="10.0"
+							prefWidth="16.0" styleClass="john"
+							stylesheets="@../css/Style.css" />
+						<Label layoutX="1140.0" layoutY="13.0" text="No Pulsar"
+							textFill="WHITE" />
 					</children>
 				</Pane>
 			</top>
