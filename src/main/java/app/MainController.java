@@ -5,12 +5,15 @@ import java.sql.Connection;
 
 import app.model.cancionDAO;
 import app.utils.UtilsBD;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 public class MainController {
 

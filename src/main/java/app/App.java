@@ -7,10 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-
-import app.model.cancionDAO;
-import app.utils.UtilsBD;
 
 /**
  * JavaFX App
