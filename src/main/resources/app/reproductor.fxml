@@ -160,8 +160,8 @@
 				<Pane prefHeight="200.0" prefWidth="200.0"
 					BorderPane.alignment="CENTER">
 					<children>
-						<VBox alignment="CENTER" layoutY="140.0" prefHeight="305.0"
-							prefWidth="55.0" styleClass="menu_bar"
+						<VBox fx:id="slider" alignment="CENTER" layoutY="140.0"
+							prefHeight="305.0" prefWidth="55.0" styleClass="menu_bar"
 							stylesheets="@../css/Style.css">
 							<children>
 								<ImageView fitHeight="30.0" fitWidth="27.0"
@@ -238,7 +238,7 @@
 									</children>
 								</HBox>
 								<HBox alignment="CENTER" prefHeight="56.0"
-									prefWidth="348.0" styleClass="playing-song-border"
+									prefWidth="348.0" styleClass="border-song"
 									stylesheets="@../css/Style.css">
 									<children>
 										<ImageView fitHeight="29.0" fitWidth="31.0"
@@ -265,7 +265,8 @@
 									</children>
 								</HBox>
 								<HBox alignment="CENTER" layoutX="10.0" layoutY="66.0"
-									prefHeight="56.0" prefWidth="348.0">
+									prefHeight="56.0" prefWidth="348.0" styleClass="border-song"
+									stylesheets="@../css/Style.css">
 									<children>
 										<Label alignment="CENTER" prefHeight="30.0"
 											prefWidth="29.0" text="2" textFill="#ababab">
@@ -294,7 +295,8 @@
 									</VBox.margin>
 								</HBox>
 								<HBox alignment="CENTER" prefHeight="56.0"
-									prefWidth="348.0">
+									prefWidth="348.0" styleClass="border-song"
+									stylesheets="@../css/Style.css">
 									<children>
 										<Label alignment="CENTER" prefHeight="30.0"
 											prefWidth="29.0" text="3" textFill="#ababab">
@@ -323,7 +325,8 @@
 									</VBox.margin>
 								</HBox>
 								<HBox alignment="CENTER" prefHeight="56.0"
-									prefWidth="348.0">
+									prefWidth="348.0" styleClass="border-song"
+									stylesheets="@../css/Style.css">
 									<children>
 										<Label alignment="CENTER" prefHeight="30.0"
 											prefWidth="29.0" text="4" textFill="#ababab">
@@ -352,7 +355,8 @@
 									</VBox.margin>
 								</HBox>
 								<HBox alignment="CENTER" prefHeight="56.0"
-									prefWidth="348.0">
+									prefWidth="348.0" styleClass="border-song"
+									stylesheets="@../css/Style.css">
 									<children>
 										<Label alignment="CENTER" prefHeight="30.0"
 											prefWidth="29.0" text="5" textFill="#ababab">
@@ -384,15 +388,6 @@
 									prefWidth="348.0">
 									<children>
 										<Separator prefHeight="45.0" prefWidth="114.0" />
-										<Label alignment="CENTER" prefHeight="30.0"
-											prefWidth="92.0" text="More" textFill="#ababab">
-											<font>
-												<Font name="System Bold" size="20.0" />
-											</font>
-											<HBox.margin>
-												<Insets left="20.0" />
-											</HBox.margin>
-										</Label>
 										<Separator prefHeight="45.0" prefWidth="114.0" />
 									</children>
 									<VBox.margin>

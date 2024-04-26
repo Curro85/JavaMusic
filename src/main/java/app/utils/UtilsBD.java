@@ -19,8 +19,7 @@ public class UtilsBD {
 			// Capturamos
 		} catch (Exception e) {
 			// Cuando salta el fallo mostramos un mensaje
-			System.out.println("Error al conectarse");
-			e.printStackTrace();
+			System.out.println("Error al conectarse, compruebe la Base de Datos");
 			return null;
 		}
 	}

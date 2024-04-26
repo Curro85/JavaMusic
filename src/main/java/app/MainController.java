@@ -42,6 +42,9 @@ public class MainController {
 	@FXML
 	private ImageView pauseImg;
 
+	@FXML
+	private Pane slider;
+
 	private MediaPlayer mp;
 	private boolean isPlaying = false;
 
@@ -52,6 +55,24 @@ public class MainController {
 	@FXML
 	private void initialize() {
 		startStop.setGraphic(playImg);
+		slider.setTranslateX(-40);
+
+		TranslateTransition slideIn = new TranslateTransition(Duration.seconds(0.3), slider);
+		slideIn.setByX(40);
+
+		TranslateTransition slideOut = new TranslateTransition(Duration.seconds(0.3), slider);
+		slideOut.setByX(-40);
+
+		slider.setOnMouseEntered(event -> {
+			slideOut.stop();
+			slideIn.play();
+		});
+
+		slider.setOnMouseExited(event -> {
+			slideIn.stop();
+			slideOut.play();
+
+		});
 	}
 
 	@FXML
