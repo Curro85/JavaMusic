@@ -2,10 +2,8 @@ package app;
 
 import java.io.File;
 import java.sql.Connection;
-import java.util.ArrayList;
 
 import app.model.CancionDAO;
-import app.model.CancionDO;
 import app.model.PlaylistDAO;
 import app.utils.UtilsBD;
 import javafx.animation.TranslateTransition;
@@ -16,7 +14,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
