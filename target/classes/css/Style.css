@@ -30,6 +30,11 @@
 	-fx-background-color: white;
 }
 
+.barraTop {
+	-fx-background-color: #b7b7b7b7;
+	-fx-background-radius: 0.0 0.0 30.0 30.0;
+}
+
 .john {
 	-fx-background-color: red;
 }
