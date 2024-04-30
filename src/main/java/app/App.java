@@ -15,10 +15,28 @@ import javafx.stage.Stage;
 public class App extends Application {
 
 	private static Scene scene;
+	private double ejeX = 0;
+	private double ejeY = 0;
 
 	@Override
 	public void start(Stage stage) throws IOException {
+
+		// Cargamos el FXML como escena principal
 		scene = new Scene(loadFXML("reproductor"));
+
+		// Con este código podemos arrastrar y mover la escena
+		// sin necesidad de que esté la ventana predeterminada
+		scene.setOnMousePressed(e -> {
+			ejeX = e.getSceneX();
+			ejeY = e.getSceneY();
+		});
+
+		scene.setOnMouseDragged(e -> {
+			stage.setX(e.getScreenX() - ejeX);
+			stage.setY(e.getScreenY() - ejeY);
+		});
+
+		// Cargamos una imagen para el icono y preparamos el stage
 		Image icon = new Image(getClass().getResourceAsStream("/img/carlton.png"));
 		stage.getIcons().add(icon);
 		stage.setScene(scene);

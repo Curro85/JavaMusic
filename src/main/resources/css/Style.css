@@ -11,6 +11,10 @@
 	-fx-background-radius:30.0 0.0 0.0 30.0;
 }
 
+.label-cancion {
+	-fx-text-fill: white;
+}
+
 .border-song:hover {
 	-fx-border-color: #ffffff;
 	-fx-border-radius: 10.0;

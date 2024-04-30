@@ -8,5 +8,6 @@ module app {
 
 	opens app to javafx.fxml;
 
+	exports app.panels;
 	exports app;
 }
