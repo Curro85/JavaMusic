@@ -151,8 +151,8 @@
 								<Cursor fx:constant="HAND" />
 							</cursor>
 						</Button>
-						<MenuBar layoutX="481.0" layoutY="-4.0" prefHeight="25.0"
-							prefWidth="258.0" styleClass="barraTop"
+						<MenuBar layoutX="530.0" layoutY="-4.0" prefHeight="25.0"
+							prefWidth="201.0" styleClass="barraTop"
 							stylesheets="@../css/Style.css">
 							<menus>
 								<Menu mnemonicParsing="false" text="File">
