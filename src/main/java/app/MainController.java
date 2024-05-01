@@ -9,6 +9,7 @@ import app.model.PlaylistDAO;
 import app.panels.BorrarPlaylistPanel;
 import app.panels.CambiarPlaylistPanel;
 import app.panels.CrearPlaylistPanel;
+import app.panels.Registro;
 import app.utils.UtilsBD;
 import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
@@ -104,6 +105,13 @@ public class MainController {
 		john.setOnMouseEntered(e -> {
 			john.setLayoutY(-100);
 		});
+	}
+
+	@FXML
+	private void registro() {
+		Registro rg = new Registro();
+		Stage stage = new Stage();
+		rg.start(stage);
 	}
 
 	@FXML
