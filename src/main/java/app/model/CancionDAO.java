@@ -8,7 +8,27 @@ import java.util.ArrayList;
 
 public class CancionDAO {
 
-	public static ArrayList<CancionDO> songs = new ArrayList<CancionDO>();
+	public static int agregarCancion(Connection con, int idPlaylist) {
+		int agregadas = 0;
+		ArrayList<CancionDO> temp = listarCanciones(con);
+		try {
+			for (int i = 0; i < temp.size(); i++) {
+				PreparedStatement pstmt = con
+						.prepareStatement("INSERT INTO TIENE (IDCANCION, IDPLAYLIST, IDUSUARIO) VALUES(?, ?, ?)");
+				pstmt.setInt(1, temp.get(i).getIdCancion());
+				pstmt.setInt(2, idPlaylist);
+				pstmt.setInt(3, 1);
+
+				agregadas += pstmt.executeUpdate();
+			}
+
+			return agregadas;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		}
+
+	}
 
 	public static String cargarCancion(Connection con, int id) {
 		String ruta = "";
@@ -29,6 +49,7 @@ public class CancionDAO {
 	}
 
 	public static ArrayList<CancionDO> listarCanciones(Connection con) {
+		ArrayList<CancionDO> songs = new ArrayList<CancionDO>();
 		try {
 			PreparedStatement pstmt = con.prepareStatement("SELECT * FROM CANCION");
 

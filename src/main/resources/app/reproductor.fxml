@@ -155,10 +155,23 @@
 							prefWidth="201.0" styleClass="barraTop"
 							stylesheets="@../css/Style.css">
 							<menus>
-								<Menu mnemonicParsing="false" text="File">
+								<Menu mnemonicParsing="false">
 									<items>
-										<MenuItem mnemonicParsing="false" text="Close" />
+										<MenuItem mnemonicParsing="false"
+											onAction="#crearPlaylist" text="Crear Playlist" />
+										<MenuItem mnemonicParsing="false"
+											onAction="#borrarPlaylist" text="Borrar Playlist" />
+										<MenuItem mnemonicParsing="false"
+											onAction="#cambiarPlaylist" text="Cambiar Playlist" />
 									</items>
+									<graphic>
+										<ImageView fitHeight="20.0" fitWidth="20.0"
+											pickOnBounds="true" preserveRatio="true">
+											<image>
+												<Image url="@../img/crear_playlist.png" />
+											</image>
+										</ImageView>
+									</graphic>
 								</Menu>
 								<Menu mnemonicParsing="false" text="Edit">
 									<items>
@@ -217,13 +230,13 @@
 									prefWidth="348.0" styleClass="border-song"
 									stylesheets="@../css/Style.css">
 									<children>
-										<ImageView fitHeight="29.0" fitWidth="31.0"
-											pickOnBounds="true" preserveRatio="true">
-											<image>
-												<Image url="@../img/play.png" />
-											</image>
-										</ImageView>
-										<Label fx:id="lblOne" prefHeight="30.0"
+										<Label alignment="CENTER" prefHeight="30.0"
+											prefWidth="29.0" text="1" textFill="#ababab">
+											<font>
+												<Font size="20.0" />
+											</font>
+										</Label>
+										<Label fx:id="lblUno" prefHeight="30.0"
 											prefWidth="274.0" text="In Dying Days" textFill="#ababab">
 											<font>
 												<Font size="20.0" />
@@ -232,8 +245,8 @@
 												<Insets left="20.0" />
 											</HBox.margin>
 										</Label>
-										<Label prefHeight="30.0" prefWidth="50.0" text="03:44"
-											textFill="#ababab">
+										<Label fx:id="timeUno" prefHeight="30.0"
+											prefWidth="50.0" text="03:44" textFill="#ababab">
 											<font>
 												<Font size="20.0" />
 											</font>
@@ -250,8 +263,9 @@
 												<Font size="20.0" />
 											</font>
 										</Label>
-										<Label prefHeight="30.0" prefWidth="274.0"
-											text="Picture Me Rollin'" textFill="#ababab">
+										<Label fx:id="lblDos" prefHeight="30.0"
+											prefWidth="274.0" text="Picture Me Rollin'"
+											textFill="#ababab">
 											<font>
 												<Font size="20.0" />
 											</font>
@@ -259,8 +273,8 @@
 												<Insets left="20.0" />
 											</HBox.margin>
 										</Label>
-										<Label prefHeight="30.0" prefWidth="50.0" text="05:14"
-											textFill="#ababab">
+										<Label fx:id="timeDos" prefHeight="30.0"
+											prefWidth="50.0" text="05:14" textFill="#ababab">
 											<font>
 												<Font size="20.0" />
 											</font>
@@ -280,8 +294,9 @@
 												<Font size="20.0" />
 											</font>
 										</Label>
-										<Label prefHeight="30.0" prefWidth="274.0"
-											text="How To Save A Life" textFill="#ababab">
+										<Label fx:id="lblTres" prefHeight="30.0"
+											prefWidth="274.0" text="How To Save A Life"
+											textFill="#ababab">
 											<font>
 												<Font size="20.0" />
 											</font>
@@ -289,8 +304,8 @@
 												<Insets left="20.0" />
 											</HBox.margin>
 										</Label>
-										<Label prefHeight="30.0" prefWidth="50.0" text="04:27"
-											textFill="#ababab">
+										<Label fx:id="timeTres" prefHeight="30.0"
+											prefWidth="50.0" text="04:27" textFill="#ababab">
 											<font>
 												<Font size="20.0" />
 											</font>
@@ -310,8 +325,8 @@
 												<Font size="20.0" />
 											</font>
 										</Label>
-										<Label prefHeight="30.0" prefWidth="274.0"
-											text="Divenire" textFill="#ababab">
+										<Label fx:id="lblCuatro" prefHeight="30.0"
+											prefWidth="274.0" text="Divenire" textFill="#ababab">
 											<font>
 												<Font size="20.0" />
 											</font>
@@ -319,8 +334,8 @@
 												<Insets left="20.0" />
 											</HBox.margin>
 										</Label>
-										<Label prefHeight="30.0" prefWidth="50.0" text="06:43"
-											textFill="#ababab">
+										<Label fx:id="timeCuatro" prefHeight="30.0"
+											prefWidth="50.0" text="06:43" textFill="#ababab">
 											<font>
 												<Font size="20.0" />
 											</font>
@@ -340,8 +355,9 @@
 												<Font size="20.0" />
 											</font>
 										</Label>
-										<Label prefHeight="30.0" prefWidth="274.0"
-											text="You Know How We Do It" textFill="#ababab">
+										<Label fx:id="lblCinco" prefHeight="30.0"
+											prefWidth="274.0" text="You Know How We Do It"
+											textFill="#ababab">
 											<font>
 												<Font size="20.0" />
 											</font>
@@ -349,8 +365,8 @@
 												<Insets left="20.0" />
 											</HBox.margin>
 										</Label>
-										<Label prefHeight="30.0" prefWidth="50.0" text="03:53"
-											textFill="#ababab">
+										<Label fx:id="timeCinco" prefHeight="30.0"
+											prefWidth="50.0" text="03:53" textFill="#ababab">
 											<font>
 												<Font size="20.0" />
 											</font>

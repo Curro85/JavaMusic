@@ -2,9 +2,13 @@ package app;
 
 import java.io.File;
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import app.model.CancionDAO;
 import app.model.PlaylistDAO;
+import app.panels.BorrarPlaylistPanel;
+import app.panels.CambiarPlaylistPanel;
+import app.panels.CrearPlaylistPanel;
 import app.utils.UtilsBD;
 import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
@@ -14,10 +18,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class MainController {
@@ -27,35 +33,11 @@ public class MainController {
 
 	// Botones
 	@FXML
-	private Button last;
-
-	@FXML
-	private Button startStop;
-
-	@FXML
-	private Button next;
-
-	@FXML
-	private Button stop;
-
-	@FXML
-	private Button exit;
-
-	@FXML
-	private Button john;
+	private Button last, startStop, next, stop, exit, john;
 
 	// Imagenes
 	@FXML
-	private ImageView dancer;
-
-	@FXML
-	private ImageView playImg;
-
-	@FXML
-	private ImageView pauseImg;
-
-	@FXML
-	private ImageView imgPlaylist;
+	private ImageView dancer, playImg, pauseImg, imgPlaylist;
 
 	// Sliders
 	@FXML
@@ -66,22 +48,8 @@ public class MainController {
 
 	// Labels
 	@FXML
-	private Label optionsIn;
-
-	@FXML
-	private Label optionsOut;
-
-	@FXML
-	private Label actTime;
-
-	@FXML
-	private Label totalTime;
-
-	@FXML
-	private Label playlistName;
-
-	@FXML
-	private Label lblOne;
+	private Label optionsIn, optionsOut, actTime, totalTime, playlistName, lblUno, lblDos, lblTres, lblCuatro, lblCinco,
+			timeUno, timeDos, timeTres, timeCuatro, timeCinco;
 
 	// Atributos Musica
 	private MediaPlayer mp;
@@ -138,10 +106,50 @@ public class MainController {
 		});
 	}
 
-	// Cambiar imagen y texto segun playlist
-//	Image img = new Image(getClass().getResourceAsStream(PlaylistDAO.cargarPlaylist(con, 1)[1]));
-//	playlistName.setText(PlaylistDAO.cargarPlaylist(con, 1)[0]);
-//	imgPlaylist.setImage(img);
+	@FXML
+	private void crearPlaylist() {
+		CrearPlaylistPanel pl = new CrearPlaylistPanel();
+		Stage stage = new Stage();
+		pl.start(stage);
+	}
+
+	@FXML
+	private void borrarPlaylist() {
+		BorrarPlaylistPanel pl = new BorrarPlaylistPanel();
+		Stage stage = new Stage();
+		pl.start(stage);
+	}
+
+	@FXML
+	private void cambiarPlaylist() {
+		CambiarPlaylistPanel pl = new CambiarPlaylistPanel(this);
+		Stage stage = new Stage();
+		pl.start(stage);
+	}
+
+	public void changePl(int id) {
+		// Cambiar imagen y texto segun playlist
+		ArrayList<String> canciones = new ArrayList<String>();
+		canciones = PlaylistDAO.cancionesPlaylist(con, id);
+		Image img = new Image(getClass().getResourceAsStream(PlaylistDAO.cargarPlaylist(con, id)[1]));
+		lblUno.setText(canciones.get(0));
+		timeUno.setText(canciones.get(1));
+
+		lblDos.setText(canciones.get(2));
+		timeDos.setText(canciones.get(3));
+
+		lblTres.setText(canciones.get(4));
+		timeTres.setText(canciones.get(5));
+
+		lblCuatro.setText(canciones.get(6));
+		timeCuatro.setText(canciones.get(7));
+
+		lblCinco.setText(canciones.get(8));
+		timeCinco.setText(canciones.get(9));
+		playlistName.setText(PlaylistDAO.cargarPlaylist(con, id)[0]);
+		imgPlaylist.setImage(img);
+
+	}
 
 	// Cambiar imagen bailarin segun config
 //	 dancer.setImage(new Image(getClass().getResourceAsStream("/img/xtreme-dance.gif")));
@@ -151,7 +159,7 @@ public class MainController {
 
 	@FXML
 	private void duracionTotal() {
-		String total = CancionDAO.songs.get(idCancionActual).getDuracion();
+		String total = CancionDAO.listarCanciones(con).get(idCancionActual).getDuracion();
 		totalTime.setText(total);
 
 		String[] time = total.split(":");
@@ -215,11 +223,12 @@ public class MainController {
 		}
 
 		idCancionActual++;
-		if (idCancionActual >= CancionDAO.songs.size()) {
+		if (idCancionActual >= CancionDAO.listarCanciones(con).size()) {
 			idCancionActual = 0;
 		}
 
-		String song = CancionDAO.cargarCancion(con, CancionDAO.songs.get(idCancionActual).getIdCancion());
+		String song = CancionDAO.cargarCancion(con,
+				CancionDAO.listarCanciones(con).get(idCancionActual).getIdCancion());
 		Media sound = new Media(new File(song).toURI().toString());
 		mp = new MediaPlayer(sound);
 		mp.setOnEndOfMedia(() -> {
@@ -245,10 +254,11 @@ public class MainController {
 
 		idCancionActual--;
 		if (idCancionActual < 0) {
-			idCancionActual = CancionDAO.songs.size() - 1;
+			idCancionActual = CancionDAO.listarCanciones(con).size() - 1;
 		}
 
-		String song = CancionDAO.cargarCancion(con, CancionDAO.songs.get(idCancionActual).getIdCancion());
+		String song = CancionDAO.cargarCancion(con,
+				CancionDAO.listarCanciones(con).get(idCancionActual).getIdCancion());
 		Media sound = new Media(new File(song).toURI().toString());
 		mp = new MediaPlayer(sound);
 		mp.setOnEndOfMedia(() -> {
