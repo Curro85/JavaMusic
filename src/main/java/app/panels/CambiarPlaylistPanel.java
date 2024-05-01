@@ -79,7 +79,21 @@ public class CambiarPlaylistPanel extends Application {
 			stage.close();
 		});
 
+		imgPl1.setOnMouseClicked(e -> {
+			if (mc != null) {
+				mc.changePl(1);
+			}
+			stage.close();
+		});
+
 		lbl2.setOnMouseClicked(e -> {
+			if (mc != null) {
+				mc.changePl(2);
+			}
+			stage.close();
+		});
+
+		imgPl2.setOnMouseClicked(e -> {
 			if (mc != null) {
 				mc.changePl(2);
 			}

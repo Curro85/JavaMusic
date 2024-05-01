@@ -155,6 +155,8 @@ public class MainController {
 		lblCinco.setText(canciones.get(8));
 		timeCinco.setText(canciones.get(9));
 		playlistName.setText(PlaylistDAO.cargarPlaylist(con, id)[0]);
+		imgPlaylist.setFitHeight(245);
+		imgPlaylist.setFitWidth(272);
 		imgPlaylist.setImage(img);
 
 	}
