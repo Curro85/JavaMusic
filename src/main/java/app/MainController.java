@@ -6,10 +6,14 @@ import java.util.ArrayList;
 
 import app.model.CancionDAO;
 import app.model.PlaylistDAO;
+import app.panels.Acercade;
+import app.panels.Ayuda;
 import app.panels.BorrarPlaylistPanel;
 import app.panels.CambiarPlaylistPanel;
 import app.panels.CrearPlaylistPanel;
+import app.panels.Perfil;
 import app.panels.Registro;
+import app.panels.Sugerencias;
 import app.utils.UtilsBD;
 import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
@@ -63,8 +67,6 @@ public class MainController {
 		// Cargamos lista de canciones
 		CancionDAO.listarCanciones(con);
 
-		System.out.println(PlaylistDAO.cancionesPlaylist(con, 1)); // CAMBIAR LABELS
-
 		// Cargo una cancion al iniciar la aplicacion
 		String song = CancionDAO.cargarCancion(con, 1);
 		Media sound = new Media(new File(song).toURI().toString());
@@ -102,9 +104,6 @@ public class MainController {
 			System.exit(0);
 		});
 
-		john.setOnMouseEntered(e -> {
-			john.setLayoutY(-100);
-		});
 	}
 
 	@FXML
@@ -112,6 +111,34 @@ public class MainController {
 		Registro rg = new Registro();
 		Stage stage = new Stage();
 		rg.start(stage);
+	}
+
+	@FXML
+	private void ayuda() {
+		Ayuda ayuda = new Ayuda();
+		Stage stage = new Stage();
+		ayuda.start(stage);
+	}
+
+	@FXML
+	private void acercaDe() {
+		Acercade acerca = new Acercade();
+		Stage stage = new Stage();
+		acerca.start(stage);
+	}
+
+	@FXML
+	private void abrirPerfil() {
+		Perfil perfil = new Perfil();
+		Stage stage = new Stage();
+		perfil.start(stage);
+	}
+
+	@FXML
+	private void sugerencias() {
+		Sugerencias sg = new Sugerencias();
+		Stage stage = new Stage();
+		sg.start(stage);
 	}
 
 	@FXML

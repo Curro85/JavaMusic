@@ -117,7 +117,7 @@
 								<Cursor fx:constant="HAND" />
 							</cursor>
 						</Button>
-						<MenuBar layoutX="530.0" layoutY="-4.0" prefHeight="25.0" prefWidth="180.0" styleClass="barraTop" stylesheets="@../css/Style.css">
+						<MenuBar layoutX="530.0" layoutY="-4.0" prefHeight="33.0" prefWidth="180.0" styleClass="barraTop" stylesheets="@../css/Style.css">
 							<menus>
 								<Menu mnemonicParsing="false">
 									<items>
@@ -136,7 +136,7 @@
 								<Menu mnemonicParsing="false">
 									<items>
 										<MenuItem mnemonicParsing="false" onAction="#registro" text="Registrate" />
-										<MenuItem mnemonicParsing="false" text="Perfil" />
+										<MenuItem mnemonicParsing="false" onAction="#abrirPerfil" text="Perfil" />
 									</items>
 									<graphic>
 										<ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -148,8 +148,8 @@
 								</Menu>
 								<Menu mnemonicParsing="false">
 									<items>
-										<MenuItem mnemonicParsing="false" text="Sugerencias" />
-										<MenuItem mnemonicParsing="false" text="Ayuda" />
+										<MenuItem mnemonicParsing="false" onAction="#sugerencias" text="Sugerencias" />
+										<MenuItem mnemonicParsing="false" onAction="#ayuda" text="Ayuda" />
 									</items>
 									<graphic>
 										<ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -161,7 +161,7 @@
 								</Menu>
 								<Menu mnemonicParsing="false">
 									<items>
-										<MenuItem mnemonicParsing="false" text="Acerca de..." />
+										<MenuItem mnemonicParsing="false" onAction="#acercaDe" text="Acerca de..." />
 									</items>
 									<graphic>
 										<ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -348,33 +348,30 @@
 							<children>
 								<ImageView fitHeight="30.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
 									<image>
+										<Image url="@../img/dance.png" />
+									</image>
+									<VBox.margin>
+										<Insets bottom="50.0" />
+									</VBox.margin>
+								</ImageView>
+								<ImageView fitHeight="30.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+									<image>
 										<Image url="@../img/darkmode.png" />
 									</image>
 								</ImageView>
-								<ImageView fitHeight="30.0" fitWidth="27.0" layoutX="24.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
-									<image>
-										<Image url="@../img/perfil.png" />
-									</image>
+								<Label text="No Pulsar">
 									<VBox.margin>
-										<Insets top="20.0" />
+										<Insets top="50.0" />
 									</VBox.margin>
-								</ImageView>
-								<ImageView fitHeight="30.0" fitWidth="27.0" layoutX="24.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
-									<image>
-										<Image url="@../img/crear_playlist.png" />
-									</image>
+								</Label>
+								<Button fx:id="john" mnemonicParsing="false" onAction="#john" prefHeight="10.0" prefWidth="16.0" styleClass="john" stylesheets="@../css/Style.css">
+									<cursor>
+										<Cursor fx:constant="NONE" />
+									</cursor>
 									<VBox.margin>
-										<Insets top="20.0" />
+										<Insets />
 									</VBox.margin>
-								</ImageView>
-								<ImageView fitHeight="30.0" fitWidth="27.0" layoutX="24.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true">
-									<image>
-										<Image url="@../img/informacion_sobre_la_app.png" />
-									</image>
-									<VBox.margin>
-										<Insets top="20.0" />
-									</VBox.margin>
-								</ImageView>
+								</Button>
 							</children>
 						</VBox>
 						<ImageView fx:id="dancer" fitHeight="150.0" fitWidth="150.0" layoutY="445.0" pickOnBounds="true" preserveRatio="true" visible="false">
@@ -412,12 +409,6 @@
 						<Cursor fx:constant="HAND" />
 					</cursor>
 				</Label>
-				<Button fx:id="john" layoutX="120.0" layoutY="19.0" mnemonicParsing="false" onAction="#john" prefHeight="10.0" prefWidth="16.0" styleClass="john" stylesheets="@../css/Style.css">
-					<cursor>
-						<Cursor fx:constant="NONE" />
-					</cursor>
-				</Button>
-				<Label layoutX="62.0" layoutY="23.0" text="No Pulsar" />
 			</children>
 		</Pane>
 	</children>

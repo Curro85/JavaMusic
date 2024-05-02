@@ -8,8 +8,6 @@ public class CancionDO {
 	private String titulo;
 	private String genero;
 	private String duracion;
-	private String album;
-	private String caratula;
 
 	// Constructor
 	public CancionDO(int idCancion, String ruta, String titulo, String genero, String duracion) {
