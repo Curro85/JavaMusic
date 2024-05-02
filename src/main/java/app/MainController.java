@@ -60,20 +60,31 @@ public class MainController {
 	private MediaPlayer mp;
 	private boolean isPlaying = false;
 	private int idCancionActual = 0;
+	private int idPlaylistActual = 0;
 
 	// Metodos
 	@FXML
 	private void initialize() {
+		// Leemos el fichero de configuracion para cargar el estado del reproductor
+		ConfigController.Configuracion config = ConfigController.cargarConfig();
+		int idPlaylist = config.getIdPlaylist();
+		int idCancion = config.getIdCancion();
+
 		// Cargamos lista de canciones
 		CancionDAO.listarCanciones(con);
 
-		// Cargo una cancion al iniciar la aplicacion
-		String song = CancionDAO.cargarCancion(con, 1);
+		// Cargo una cancion y playlist al iniciar la aplicacion según configuración
+		idCancionActual = idCancion;
+		System.out.println(idCancionActual);
+		changePl(idPlaylist);
+		String song = CancionDAO.cargarCancion(con, idCancion);
+		System.out.println(song);
 		Media sound = new Media(new File(song).toURI().toString());
 		mp = new MediaPlayer(sound);
 		mp.setOnEndOfMedia(() -> {
 			siguienteCancion(null);
 		});
+		System.out.println(idCancionActual);
 		duracionTotal();
 		sincSlider();
 
@@ -101,6 +112,7 @@ public class MainController {
 		});
 
 		exit.setOnAction(e -> {
+			ConfigController.guardarConfig(idPlaylistActual, idCancionActual);
 			System.exit(0);
 		});
 
@@ -164,6 +176,7 @@ public class MainController {
 
 	public void changePl(int id) {
 		// Cambiar imagen y texto segun playlist
+		idPlaylistActual = id;
 		ArrayList<String> canciones = new ArrayList<String>();
 		canciones = PlaylistDAO.cancionesPlaylist(con, id);
 		Image img = new Image(getClass().getResourceAsStream(PlaylistDAO.cargarPlaylist(con, id)[1]));
@@ -191,12 +204,10 @@ public class MainController {
 	// Cambiar imagen bailarin segun config
 //	 dancer.setImage(new Image(getClass().getResourceAsStream("/img/xtreme-dance.gif")));
 
-	// Cambiar nombre segun playlist
-//	lblOne.setText(PlaylistDAO.cancionesPlaylist(con, 1).get(0));
-
 	@FXML
 	private void duracionTotal() {
 		String total = CancionDAO.listarCanciones(con).get(idCancionActual).getDuracion();
+		System.out.println(CancionDAO.listarCanciones(con).get(idCancionActual).getIdCancion());
 		totalTime.setText(total);
 
 		String[] time = total.split(":");
@@ -258,7 +269,6 @@ public class MainController {
 			mp.stop();
 			isPlaying = false;
 		}
-
 		idCancionActual++;
 		if (idCancionActual >= CancionDAO.listarCanciones(con).size()) {
 			idCancionActual = 0;
