@@ -65,4 +65,22 @@ public class CancionDAO {
 			return null;
 		}
 	}
+
+	public static int reproducirCancion(Connection con, String nombre) {
+		int id = 0;
+		try {
+			PreparedStatement pstmt = con.prepareStatement("SELECT IDCANCION FROM CANCION WHERE TITULO LIKE ?;");
+			pstmt.setString(1, "%" + nombre + "%");
+
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+
+			id = rs.getInt(1);
+
+			return id;
+		} catch (SQLException e) {
+			return 0;
+		}
+
+	}
 }

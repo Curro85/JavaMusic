@@ -42,7 +42,7 @@ public class MainController {
 
 	// Imagenes
 	@FXML
-	private ImageView dancer, playImg, pauseImg, imgPlaylist;
+	private ImageView dancer, playImg, pauseImg, imgPlaylist, elegirBaile;
 
 	// Sliders
 	@FXML
@@ -111,11 +111,55 @@ public class MainController {
 			optionsOut.setDisable(true);
 		});
 
+		lblUno.setOnMouseClicked(e -> {
+			String titulo = lblUno.getText();
+			elegirCancion(titulo);
+		});
+
+		lblDos.setOnMouseClicked(e -> {
+			String titulo = lblDos.getText();
+			elegirCancion(titulo);
+		});
+
+		lblTres.setOnMouseClicked(e -> {
+			String titulo = lblTres.getText();
+			elegirCancion(titulo);
+		});
+
+		lblCuatro.setOnMouseClicked(e -> {
+			String titulo = lblCuatro.getText();
+			elegirCancion(titulo);
+		});
+
+		lblCinco.setOnMouseClicked(e -> {
+			String titulo = lblCinco.getText();
+			elegirCancion(titulo);
+		});
+
 		exit.setOnAction(e -> {
 			ConfigController.guardarConfig(idPlaylistActual, idCancionActual);
 			System.exit(0);
 		});
 
+	}
+
+	private void elegirCancion(String titulo) {
+		if (mp != null) {
+			mp.stop();
+			isPlaying = false;
+		}
+
+		int idElegida = CancionDAO.reproducirCancion(con, titulo);
+		String cancion = CancionDAO.cargarCancion(con, idElegida);
+		Media cancionElegida = new Media(new File(cancion).toURI().toString());
+		mp = new MediaPlayer(cancionElegida);
+		mp.setOnEndOfMedia(() -> {
+			siguienteCancion(null);
+		});
+		totalTime.setText(CancionDAO.listarCanciones(con).get(idElegida - 1).getDuracion());
+		sincSlider();
+		mp.play();
+		isPlaying = true;
 	}
 
 	@FXML
