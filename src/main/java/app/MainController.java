@@ -61,10 +61,13 @@ public class MainController {
 	private boolean isPlaying = false;
 	private int idCancionActual = 0;
 	private int idPlaylistActual = 0;
-
 	private int bailarin = 0;
 
 	// Metodos
+	/**
+	 * Metodo inicial que carga la configuracion inicial de la aplicacion con una
+	 * playlist y una cancion a reproducir
+	 */
 	@FXML
 	private void initialize() {
 		// Leemos el fichero de configuracion para cargar el estado del reproductor
@@ -72,7 +75,6 @@ public class MainController {
 		int idPlaylist = config.getIdPlaylist();
 		int idCancion = config.getIdCancion();
 		bailarin = config.getBailarin();
-
 		dancer.setImage(new Image(getClass().getResourceAsStream(cambiarBailarin(bailarin))));
 
 		// Cargamos lista de canciones
@@ -91,6 +93,7 @@ public class MainController {
 		sincSlider();
 
 		startStop.setGraphic(playImg);
+		// Creo una animacion para la barra de opciones
 		slider.setTranslateX(50);
 
 		TranslateTransition slideIn = new TranslateTransition(Duration.seconds(0.1), slider);
@@ -113,6 +116,7 @@ public class MainController {
 			optionsOut.setDisable(true);
 		});
 
+		// OnClick para las labels y reproducir una cancion
 		lblUno.setOnMouseClicked(e -> {
 			String titulo = lblUno.getText();
 			elegirCancion(titulo);
@@ -138,10 +142,12 @@ public class MainController {
 			elegirCancion(titulo);
 		});
 
+		// Elegir bailarin con la rueda del raton
 		dancer.setOnScroll(e -> {
 			dancer.setImage(new Image(getClass().getResourceAsStream(cambiarBailarin(bailarin))));
 		});
 
+		// Boton para cerrar la aplicacion y guarda la configuracion
 		exit.setOnAction(e -> {
 			ConfigController.guardarConfig(idPlaylistActual, idCancionActual, bailarin);
 			System.exit(0);
@@ -149,6 +155,11 @@ public class MainController {
 
 	}
 
+	/**
+	 * Metodo para elegir una cancion de la label que se muestra
+	 * 
+	 * @param titulo
+	 */
 	private void elegirCancion(String titulo) {
 		if (mp != null) {
 			mp.stop();
@@ -167,6 +178,9 @@ public class MainController {
 		reproducir(null);
 	}
 
+	/**
+	 * Metodo para abrir la ventana de registro
+	 */
 	@FXML
 	private void registro() {
 		Registro rg = new Registro();
@@ -174,6 +188,9 @@ public class MainController {
 		rg.start(stage);
 	}
 
+	/**
+	 * Metodo para abrir la ventana de ayuda
+	 */
 	@FXML
 	private void ayuda() {
 		Ayuda ayuda = new Ayuda();
@@ -181,6 +198,9 @@ public class MainController {
 		ayuda.start(stage);
 	}
 
+	/**
+	 * Metodo para abrir la ventana acerca de
+	 */
 	@FXML
 	private void acercaDe() {
 		Acercade acerca = new Acercade();
@@ -188,6 +208,9 @@ public class MainController {
 		acerca.start(stage);
 	}
 
+	/**
+	 * Metodo para abrir la ventana de perfil
+	 */
 	@FXML
 	private void abrirPerfil() {
 		Perfil perfil = new Perfil();
@@ -195,6 +218,9 @@ public class MainController {
 		perfil.start(stage);
 	}
 
+	/**
+	 * Metodo para abrir la ventana sugerencias
+	 */
 	@FXML
 	private void sugerencias() {
 		Sugerencias sg = new Sugerencias();
@@ -202,6 +228,9 @@ public class MainController {
 		sg.start(stage);
 	}
 
+	/**
+	 * Metodo para la ventana crear Playlist
+	 */
 	@FXML
 	private void crearPlaylist() {
 		CrearPlaylistPanel pl = new CrearPlaylistPanel();
@@ -209,6 +238,9 @@ public class MainController {
 		pl.start(stage);
 	}
 
+	/**
+	 * Metodo para la ventana borrar Playlist
+	 */
 	@FXML
 	private void borrarPlaylist() {
 		BorrarPlaylistPanel pl = new BorrarPlaylistPanel();
@@ -216,6 +248,9 @@ public class MainController {
 		pl.start(stage);
 	}
 
+	/**
+	 * Metodo para la ventana cambiar Playlist
+	 */
 	@FXML
 	private void cambiarPlaylist() {
 		CambiarPlaylistPanel pl = new CambiarPlaylistPanel(this);
@@ -223,12 +258,20 @@ public class MainController {
 		pl.start(stage);
 	}
 
+	/**
+	 * Metodo que recibe un id de playlist para cambiarla por la actual
+	 * 
+	 * @param id
+	 */
 	public void changePl(int id) {
 		// Cambiar imagen y texto segun playlist
 		idPlaylistActual = id;
 		ArrayList<String> canciones = new ArrayList<String>();
 		canciones = PlaylistDAO.cancionesPlaylist(con, id);
 		Image img = new Image(getClass().getResourceAsStream(PlaylistDAO.cargarPlaylist(con, id)[1]));
+		// Despues de cargar las canciones en un arraylist cambio la imagen de la
+		// playlist
+		// y las labels con los nombres y tiempo de las canciones
 		lblUno.setText(canciones.get(0));
 		timeUno.setText(canciones.get(1));
 
@@ -250,6 +293,9 @@ public class MainController {
 
 	}
 
+	/**
+	 * Metodo para mostrar u ocultar el bailarn
+	 */
 	@FXML
 	private void bailarin() {
 		if (dancer.isVisible()) {
@@ -259,6 +305,13 @@ public class MainController {
 		}
 	}
 
+	/**
+	 * Metodo que recibe el numero de bailarin y segun ese numero lo añade al
+	 * imageview
+	 * 
+	 * @param bailarin
+	 * @return
+	 */
 	private String cambiarBailarin(int bailarin) {
 		if (bailarin == 0) {
 			this.bailarin++;
@@ -278,6 +331,9 @@ public class MainController {
 		}
 	}
 
+	/**
+	 * Metodo que muestra la duracion de la cancion
+	 */
 	@FXML
 	private void duracionTotal() {
 		String total = CancionDAO.listarCanciones(con).get(idCancionActual).getDuracion();
@@ -289,6 +345,10 @@ public class MainController {
 		repSlider.setMax((min * 60) + sec);
 	}
 
+	/**
+	 * Metodo que "observa" la reproduccion y ajusta el slider segun el momento en
+	 * el que esté la canción
+	 */
 	@FXML
 	private void sincSlider() {
 		mp.currentTimeProperty().addListener(new ChangeListener<Duration>() {
@@ -311,12 +371,23 @@ public class MainController {
 
 	}
 
+	/**
+	 * Funcion que formatea el tiempo de las canciones
+	 * 
+	 * @param tiempo
+	 * @return
+	 */
 	private String formatTime(Duration tiempo) {
 		int min = (int) tiempo.toMinutes();
 		int sec = (int) tiempo.toSeconds() % 60;
 		return String.format("%02d:%02d", min, sec);
 	}
 
+	/**
+	 * Metodo para reproducir las canciones
+	 * 
+	 * @param e
+	 */
 	@FXML
 	private void reproducir(ActionEvent e) {
 		if (isPlaying) {
@@ -336,6 +407,11 @@ public class MainController {
 		isPlaying = !isPlaying;
 	}
 
+	/**
+	 * Metodo para pasar a la siguiente cancion
+	 * 
+	 * @param e
+	 */
 	@FXML
 	private void siguienteCancion(ActionEvent e) {
 		if (mp != null) {
@@ -365,6 +441,11 @@ public class MainController {
 		isPlaying = true;
 	}
 
+	/**
+	 * Metodo para retroceder en las canciones
+	 * 
+	 * @param e
+	 */
 	@FXML
 	private void anteriorCancion(ActionEvent e) {
 		if (mp != null) {
@@ -395,6 +476,11 @@ public class MainController {
 		isPlaying = true;
 	}
 
+	/**
+	 * Metodo para detener la reproduccion
+	 * 
+	 * @param e
+	 */
 	@FXML
 	private void detener(ActionEvent e) {
 		if (mp != null) {
