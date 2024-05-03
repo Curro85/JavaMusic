@@ -23,7 +23,7 @@ public class ConfigController {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(CONFIG));
 			// Si el id de la canción es cero, lo pongo a la cancion inicial de la playlist
-			if (idCancion == 0) {
+			if (idCancion <= 0) {
 				idCancion = 1;
 			}
 
@@ -31,7 +31,7 @@ public class ConfigController {
 			if (bailarin <= 0) {
 				bailarin = 0;
 			} else {
-				bailarin -= 1;
+				bailarin--;
 			}
 
 			writer.write(idPlaylist + "\n");
