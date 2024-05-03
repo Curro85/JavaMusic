@@ -431,19 +431,26 @@
 							styleClass="menu_bar" stylesheets="@../css/Style.css">
 							<children>
 								<ImageView fx:id="elegirBaile" fitHeight="30.0"
-									fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+									fitWidth="27.0" onMouseClicked="#bailarin" pickOnBounds="true"
+									preserveRatio="true">
 									<image>
 										<Image url="@../img/dance.png" />
 									</image>
 									<VBox.margin>
 										<Insets bottom="50.0" />
 									</VBox.margin>
+									<cursor>
+										<Cursor fx:constant="HAND" />
+									</cursor>
 								</ImageView>
 								<ImageView fitHeight="30.0" fitWidth="27.0"
 									pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@../img/darkmode.png" />
 									</image>
+									<cursor>
+										<Cursor fx:constant="HAND" />
+									</cursor>
 								</ImageView>
 								<Label text="No Pulsar">
 									<VBox.margin>

@@ -62,6 +62,8 @@ public class MainController {
 	private int idCancionActual = 0;
 	private int idPlaylistActual = 0;
 
+	private int bailarin = 0;
+
 	// Metodos
 	@FXML
 	private void initialize() {
@@ -69,22 +71,22 @@ public class MainController {
 		ConfigController.Configuracion config = ConfigController.cargarConfig();
 		int idPlaylist = config.getIdPlaylist();
 		int idCancion = config.getIdCancion();
+		bailarin = config.getBailarin();
+
+		dancer.setImage(new Image(getClass().getResourceAsStream(cambiarBailarin(bailarin))));
 
 		// Cargamos lista de canciones
 		CancionDAO.listarCanciones(con);
 
 		// Cargo una cancion y playlist al iniciar la aplicacion según configuración
 		idCancionActual = idCancion;
-		System.out.println(idCancionActual);
 		changePl(idPlaylist);
 		String song = CancionDAO.cargarCancion(con, idCancion);
-		System.out.println(song);
 		Media sound = new Media(new File(song).toURI().toString());
 		mp = new MediaPlayer(sound);
 		mp.setOnEndOfMedia(() -> {
 			siguienteCancion(null);
 		});
-		System.out.println(idCancionActual);
 		duracionTotal();
 		sincSlider();
 
@@ -136,8 +138,12 @@ public class MainController {
 			elegirCancion(titulo);
 		});
 
+		dancer.setOnScroll(e -> {
+			dancer.setImage(new Image(getClass().getResourceAsStream(cambiarBailarin(bailarin))));
+		});
+
 		exit.setOnAction(e -> {
-			ConfigController.guardarConfig(idPlaylistActual, idCancionActual);
+			ConfigController.guardarConfig(idPlaylistActual, idCancionActual, bailarin);
 			System.exit(0);
 		});
 
@@ -158,8 +164,7 @@ public class MainController {
 		});
 		totalTime.setText(CancionDAO.listarCanciones(con).get(idElegida - 1).getDuracion());
 		sincSlider();
-		mp.play();
-		isPlaying = true;
+		reproducir(null);
 	}
 
 	@FXML
@@ -245,13 +250,37 @@ public class MainController {
 
 	}
 
-	// Cambiar imagen bailarin segun config
-//	 dancer.setImage(new Image(getClass().getResourceAsStream("/img/xtreme-dance.gif")));
+	@FXML
+	private void bailarin() {
+		if (dancer.isVisible()) {
+			dancer.setVisible(false);
+		} else {
+			dancer.setVisible(true);
+		}
+	}
+
+	private String cambiarBailarin(int bailarin) {
+		if (bailarin == 0) {
+			this.bailarin++;
+			return "/img/carlton-dance.gif";
+		} else if (bailarin == 1) {
+			this.bailarin++;
+			return "/img/xtreme-dance.gif";
+		} else if (bailarin == 2) {
+			this.bailarin++;
+			return "/img/khaled-dance.gif";
+		} else if (bailarin == 3) {
+			this.bailarin++;
+			return "/img/snoop-dance.gif";
+		} else {
+			this.bailarin = 0;
+			return "/img/carlton-dance.gif";
+		}
+	}
 
 	@FXML
 	private void duracionTotal() {
 		String total = CancionDAO.listarCanciones(con).get(idCancionActual).getDuracion();
-		System.out.println(CancionDAO.listarCanciones(con).get(idCancionActual).getIdCancion());
 		totalTime.setText(total);
 
 		String[] time = total.split(":");
