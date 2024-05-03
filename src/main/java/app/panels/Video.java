@@ -20,10 +20,16 @@ public class Video extends Application {
 		Pane principal = new Pane();
 
 		// Creamos objeto media con la ruta al video
+		String cancion = getClass().getResource("/music/john-cena.mp3").toExternalForm();
+		Media song = new Media(cancion);
+
 		String ruta = getClass().getResource("/img/john-entrance.mp4").toExternalForm();
 		Media video = new Media(ruta);
 
-		// Creamos el reproductor del video
+		// Creamos el reproductor del video y de musica
+		MediaPlayer mpCancion = new MediaPlayer(song);
+		mpCancion.setAutoPlay(true);
+		mpCancion.setCycleCount(MediaPlayer.INDEFINITE);
 		MediaPlayer mp = new MediaPlayer(video);
 		mp.setAutoPlay(true);
 		mp.setCycleCount(MediaPlayer.INDEFINITE);
@@ -52,6 +58,7 @@ public class Video extends Application {
 		stage.setScene(scene);
 		stage.setOnCloseRequest(e -> {
 			mp.stop();
+			mpCancion.stop();
 		});
 		stage.showAndWait();
 	}

@@ -525,11 +525,11 @@ public class MainController {
 		Stage stage = new Stage();
 		video.start(stage);
 
-		String song = "C:/Users/Curro/Desktop/Tareas Clases/DAW/Programación/proyectos/javafx-fxml/src/main/resources/music/john-cena.mp3";
-		Media sound = new Media(new File(song).toURI().toString());
-		mp = new MediaPlayer(sound);
-		mp.play();
-
-		isPlaying = true;
+//		String song = "C:/Users/Curro/Desktop/Tareas Clases/DAW/Programación/proyectos/javafx-fxml/src/main/resources/music/john-cena.mp3";
+//		Media sound = new Media(new File(song).toURI().toString());
+//		mp = new MediaPlayer(sound);
+//		mp.play();
+//
+//		isPlaying = true;
 	}
 }
