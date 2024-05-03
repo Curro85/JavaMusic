@@ -1,5 +1,9 @@
 package app.panels;
 
+import java.sql.Connection;
+
+import app.model.UsuarioDAO;
+import app.utils.UtilsBD;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,6 +22,8 @@ public class Registro extends Application {
 
 	@Override
 	public void start(Stage stage) {
+
+		Connection con = UtilsBD.conectarBD();
 		// Creamos un objeto GridPane para organizar los elementos de la interfaz
 		GridPane grid = new GridPane();
 		grid.setAlignment(Pos.CENTER);
@@ -62,6 +68,12 @@ public class Registro extends Application {
 				alert.setContentText("Por favor, complete todos los campos antes de guardar.");
 				alert.show();
 			} else {
+				UsuarioDAO.registrarUsuario(con, nombre, email, password);
+				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				alert.setTitle("Registro");
+				alert.setHeaderText(null);
+				alert.setContentText("Registro completado!");
+				alert.show();
 				stage.close();
 			}
 		});

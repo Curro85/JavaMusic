@@ -50,7 +50,7 @@ public class Perfil extends Application {
 		// Agregamos un controlador a los campos de texto y al botón
 		nombreField.setOnAction(event -> {
 			String nombre = nombreField.getText();
-			System.out.println("Nombre: " + nombre);
+			System.out.println(nombre);
 		});
 
 		guardarButton.setOnAction(event -> {
@@ -63,6 +63,7 @@ public class Perfil extends Application {
 				alert.setHeaderText("Introduzca un Nombre");
 				alert.show();
 			}
+			primaryStage.close();
 		});
 	}
 }

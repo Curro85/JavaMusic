@@ -46,6 +46,7 @@ public class Sugerencias extends Application {
 		sendButton.setOnAction(event -> {
 			String sugerencia = textField.getText();
 			System.out.println("Sugerencia: " + sugerencia);
+			primaryStage.close();
 		});
 	}
 

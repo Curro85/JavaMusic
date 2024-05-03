@@ -35,7 +35,7 @@ public class Acercade extends Application {
 		Hyperlink githubLink = new Hyperlink("GitHub Repository");
 		githubLink.setVisited(false);
 		githubLink.setOnAction(event -> {
-			getHostServices().showDocument("https://github.com/jjenkov/javafx-examples");
+			getHostServices().showDocument("https://github.com/Curro85/JavaMusic");
 		});
 		vbox.getChildren().addAll(githubLink, copyrightLabel);
 

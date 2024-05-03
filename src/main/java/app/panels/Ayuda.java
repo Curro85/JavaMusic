@@ -21,11 +21,16 @@ public class Ayuda extends Application {
 		vbox.setPadding(new Insets(25, 25, 25, 25));
 
 		// Agregamos cinco enlaces a la interfaz
-		Hyperlink link1 = new Hyperlink("Link 1");
-		Hyperlink link2 = new Hyperlink("Link 2");
-		Hyperlink link3 = new Hyperlink("Link 3");
-		Hyperlink link4 = new Hyperlink("Link 4");
-		Hyperlink link5 = new Hyperlink("Link 5");
+		Hyperlink link1 = new Hyperlink("https://www.w3schools.com/java");
+		link1.setVisited(false);
+		Hyperlink link2 = new Hyperlink("https://jenkov.com/tutorials/javafx");
+		link2.setVisited(false);
+		Hyperlink link3 = new Hyperlink("https://www.javatpoint.com/javafx-css");
+		link3.setVisited(false);
+		Hyperlink link4 = new Hyperlink("https://openjfx.io/openjfx-docs/#install-javafx");
+		link4.setVisited(false);
+		Hyperlink link5 = new Hyperlink("https://code.makery.ch/blog/javafx-8-dialogs/");
+		link5.setVisited(false);
 
 		vbox.getChildren().addAll(link1, link2, link3, link4, link5);
 
@@ -33,9 +38,30 @@ public class Ayuda extends Application {
 		Hyperlink githubLink = new Hyperlink("GitHub Repository");
 		githubLink.setVisited(false);
 		githubLink.setOnAction(event -> {
-			getHostServices().showDocument("https://github.com/jjenkov/javafx-examples");
+			getHostServices().showDocument("https://github.com/Curro85/JavaMusic");
 		});
 		vbox.getChildren().add(githubLink);
+
+		// Agregamos onAction a los enlaces
+		link1.setOnAction(event -> {
+			getHostServices().showDocument("https://www.w3schools.com/java/default.asp");
+		});
+
+		link2.setOnAction(event -> {
+			getHostServices().showDocument("https://jenkov.com/tutorials/javafx/index.html");
+		});
+
+		link3.setOnAction(event -> {
+			getHostServices().showDocument("https://www.javatpoint.com/javafx-css");
+		});
+
+		link4.setOnAction(event -> {
+			getHostServices().showDocument("https://openjfx.io/openjfx-docs/#install-javafx");
+		});
+
+		link5.setOnAction(event -> {
+			getHostServices().showDocument("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+		});
 
 		// Agregamos un copyright a la interfaz
 		Label copyrightLabel = new Label("Copyright © 2023 JavaMusic");
