@@ -8,8 +8,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class ConfigController {
+	// Constante para el archivo de configuracion
 	private static final String CONFIG = "config.txt";
 
+	/**
+	 * Metodo que recibe los datos que quiero almacenar en el fichero de
+	 * configuracion
+	 * 
+	 * @param idPlaylist
+	 * @param idCancion
+	 * @param bailarin
+	 */
 	public static void guardarConfig(int idPlaylist, int idCancion, int bailarin) {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(CONFIG));
@@ -22,6 +31,11 @@ public class ConfigController {
 		}
 	}
 
+	/**
+	 * Metodo que devuelve los datos almacenados en el fichero de configuracion
+	 * 
+	 * @return
+	 */
 	public static Configuracion cargarConfig() {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(CONFIG));
@@ -44,6 +58,7 @@ public class ConfigController {
 		}
 	}
 
+	// Clase configuracion con su constructor, set y get
 	public static class Configuracion {
 		private int idPlaylist;
 		private int idCancion;

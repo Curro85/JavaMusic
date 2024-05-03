@@ -64,7 +64,7 @@ public class Ayuda extends Application {
 		});
 
 		// Agregamos un copyright a la interfaz
-		Label copyrightLabel = new Label("Copyright © 2023 JavaMusic");
+		Label copyrightLabel = new Label("Copyright © 2024 JavaMusic");
 		copyrightLabel.setStyle("-fx-text-fill: white");
 		vbox.getChildren().add(copyrightLabel);
 

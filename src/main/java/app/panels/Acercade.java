@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Acercade extends Application {
 
@@ -20,16 +21,18 @@ public class Acercade extends Application {
 		vbox.setSpacing(10);
 		vbox.setPadding(new Insets(25, 25, 25, 25));
 
-		// Nombres alumos
+		// Nombres desarrolladores y copyright
+		Label principal = new Label("Desarrollador por: ");
+		principal.setStyle("-fx-text-fill: white");
 		Label nombreValue1 = new Label("Alejandro Morillo");
 		nombreValue1.setStyle("-fx-text-fill: white");
 		Label nombreValue2 = new Label("Manuel de Sande");
 		nombreValue2.setStyle("-fx-text-fill: white");
 		Label nombreValue3 = new Label("Mario Fernandez");
 		nombreValue3.setStyle("-fx-text-fill: white");
-		Label copyrightLabel = new Label("Copyright © 2023 JavaMusic");
+		Label copyrightLabel = new Label("Copyright © 2024 JavaMusic");
 		copyrightLabel.setStyle("-fx-text-fill: white");
-		vbox.getChildren().addAll(nombreValue1, nombreValue2, nombreValue3);
+		vbox.getChildren().addAll(principal, nombreValue1, nombreValue2, nombreValue3);
 
 		// Agregamos un enlace a GitHub
 		Hyperlink githubLink = new Hyperlink("GitHub Repository");

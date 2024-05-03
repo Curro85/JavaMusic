@@ -8,6 +8,13 @@ import java.util.ArrayList;
 
 public class CancionDAO {
 
+	/**
+	 * Funcion que nos permite asociar canciones a una playlist
+	 * 
+	 * @param con
+	 * @param idPlaylist
+	 * @return
+	 */
 	public static int agregarCancion(Connection con, int idPlaylist) {
 		int agregadas = 0;
 		ArrayList<CancionDO> temp = listarCanciones(con);
@@ -30,6 +37,13 @@ public class CancionDAO {
 
 	}
 
+	/**
+	 * Funcion que nos carga una cancion especifica de la base de datos
+	 * 
+	 * @param con
+	 * @param id
+	 * @return
+	 */
 	public static String cargarCancion(Connection con, int id) {
 		String ruta = "";
 
@@ -48,6 +62,12 @@ public class CancionDAO {
 		return ruta;
 	}
 
+	/**
+	 * Funcion que nos lista todas las canciones dentro de la bse de datos
+	 * 
+	 * @param con
+	 * @return
+	 */
 	public static ArrayList<CancionDO> listarCanciones(Connection con) {
 		ArrayList<CancionDO> songs = new ArrayList<CancionDO>();
 		try {
@@ -66,6 +86,13 @@ public class CancionDAO {
 		}
 	}
 
+	/**
+	 * Funcion que nos reproduce una cancion al pulsar sobre su label
+	 * 
+	 * @param con
+	 * @param nombre
+	 * @return
+	 */
 	public static int reproducirCancion(Connection con, String nombre) {
 		int id = 0;
 		try {

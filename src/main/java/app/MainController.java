@@ -14,6 +14,7 @@ import app.panels.CrearPlaylistPanel;
 import app.panels.Perfil;
 import app.panels.Registro;
 import app.panels.Sugerencias;
+import app.panels.Video;
 import app.utils.UtilsBD;
 import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
@@ -102,6 +103,7 @@ public class MainController {
 		TranslateTransition slideOut = new TranslateTransition(Duration.seconds(0.1), slider);
 		slideOut.setByX(50);
 
+		// Metodos del boton opciones
 		optionsIn.setOnMouseClicked(event -> {
 			slideOut.stop();
 			slideIn.play();
@@ -161,12 +163,16 @@ public class MainController {
 	 * @param titulo
 	 */
 	private void elegirCancion(String titulo) {
+		// Si el reproductor está activo lo pauso
 		if (mp != null) {
 			mp.stop();
 			isPlaying = false;
 		}
 
+		// Selecciono la cancion segun el parametro pasado
 		int idElegida = CancionDAO.reproducirCancion(con, titulo);
+		idCancionActual = idElegida - 1;
+		// Cargo la cancion al reproductor e inicio su reproduccion
 		String cancion = CancionDAO.cargarCancion(con, idElegida);
 		Media cancionElegida = new Media(new File(cancion).toURI().toString());
 		mp = new MediaPlayer(cancionElegida);
@@ -336,9 +342,12 @@ public class MainController {
 	 */
 	@FXML
 	private void duracionTotal() {
+		// Obtengo la cancion actual en reproduccion
 		String total = CancionDAO.listarCanciones(con).get(idCancionActual).getDuracion();
 		totalTime.setText(total);
 
+		// Transformo todo el tiempo en segundos y se lo vinculo al slider para que
+		// avance conforme a la cancion
 		String[] time = total.split(":");
 		int min = Integer.parseInt(time[0]);
 		int sec = Integer.parseInt(time[1]);
@@ -351,6 +360,8 @@ public class MainController {
 	 */
 	@FXML
 	private void sincSlider() {
+		// Creo una "escucha" al tiempo que me pasa el reproductor y actualizo su valor
+		// conforme avanza para así obtener el tiempo de la cancion
 		mp.currentTimeProperty().addListener(new ChangeListener<Duration>() {
 			@Override
 			public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
@@ -358,11 +369,14 @@ public class MainController {
 			}
 		});
 
+		// Pongo formato del tiempo en minutos : segundos
 		mp.currentTimeProperty().addListener((observable, oldValue, newValue) -> {
 			String formTime = formatTime(newValue);
 			actTime.setText(formTime);
 		});
 
+		// Añado una "escucha" para poder arrastrar y avanzar la reproduccion con el
+		// ratón
 		repSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
 			if (repSlider.isValueChanging()) {
 				mp.seek(Duration.seconds(newValue.doubleValue()));
@@ -392,13 +406,11 @@ public class MainController {
 	private void reproducir(ActionEvent e) {
 		if (isPlaying) {
 			mp.pause();
-			dancer.setVisible(false);
 			playImg.setVisible(true);
 			pauseImg.setVisible(false);
 			startStop.setGraphic(playImg);
 		} else {
 			mp.play();
-			dancer.setVisible(true);
 			playImg.setVisible(false);
 			pauseImg.setVisible(true);
 			startStop.setGraphic(pauseImg);
@@ -414,18 +426,24 @@ public class MainController {
 	 */
 	@FXML
 	private void siguienteCancion(ActionEvent e) {
+		// Si el reproductor está activo lo pauso
 		if (mp != null) {
 			mp.stop();
 			isPlaying = false;
 		}
+
+		// Incremento el id de la cancion actual
 		idCancionActual++;
+		// Si supera al tamaño del arraylist reinicio el reproductor
 		if (idCancionActual >= CancionDAO.listarCanciones(con).size()) {
 			idCancionActual = 0;
 		}
 
+		// Cargo la cancion al reproductor
 		String song = CancionDAO.cargarCancion(con,
 				CancionDAO.listarCanciones(con).get(idCancionActual).getIdCancion());
 		Media sound = new Media(new File(song).toURI().toString());
+		// Inicio la reproduccion
 		mp = new MediaPlayer(sound);
 		mp.setOnEndOfMedia(() -> {
 			siguienteCancion(null);
@@ -433,7 +451,6 @@ public class MainController {
 		duracionTotal();
 		sincSlider();
 		mp.play();
-		dancer.setVisible(true);
 		playImg.setVisible(false);
 		pauseImg.setVisible(true);
 		startStop.setGraphic(pauseImg);
@@ -448,19 +465,24 @@ public class MainController {
 	 */
 	@FXML
 	private void anteriorCancion(ActionEvent e) {
+		// Si el reproductor está activo lo pauso
 		if (mp != null) {
 			mp.stop();
 			isPlaying = false;
 		}
 
+		// Decremento el id de la cancion actual
 		idCancionActual--;
+		// Si es inferior a cero lo pongo al inicio del arraylist
 		if (idCancionActual < 0) {
 			idCancionActual = CancionDAO.listarCanciones(con).size() - 1;
 		}
 
+		// Cargo la cancion al reproductor
 		String song = CancionDAO.cargarCancion(con,
 				CancionDAO.listarCanciones(con).get(idCancionActual).getIdCancion());
 		Media sound = new Media(new File(song).toURI().toString());
+		// Inicio la reproduccion
 		mp = new MediaPlayer(sound);
 		mp.setOnEndOfMedia(() -> {
 			siguienteCancion(null);
@@ -468,7 +490,6 @@ public class MainController {
 		duracionTotal();
 		sincSlider();
 		mp.play();
-		dancer.setVisible(true);
 		playImg.setVisible(false);
 		pauseImg.setVisible(true);
 		startStop.setGraphic(pauseImg);
@@ -500,8 +521,9 @@ public class MainController {
 			isPlaying = false;
 		}
 
-		// stop.setDisable(true);
-		// stop.setVisible(false);
+		Video video = new Video();
+		Stage stage = new Stage();
+		video.start(stage);
 
 		String song = "C:/Users/Curro/Desktop/Tareas Clases/DAW/Programación/proyectos/javafx-fxml/src/main/resources/music/john-cena.mp3";
 		Media sound = new Media(new File(song).toURI().toString());

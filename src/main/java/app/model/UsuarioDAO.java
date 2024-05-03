@@ -5,6 +5,17 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class UsuarioDAO {
+
+	/**
+	 * Funcion que recibe los parametros a introducir para insertar en la base de
+	 * datos un nuevo usuario
+	 * 
+	 * @param con
+	 * @param nombre
+	 * @param email
+	 * @param contrasenia
+	 * @return
+	 */
 	public static int registrarUsuario(Connection con, String nombre, String email, String contrasenia) {
 		try {
 			PreparedStatement pstmt = con
