@@ -80,7 +80,7 @@ public class CrearPlaylistPanel extends Application {
 		rightVB.setAlignment(Pos.TOP_CENTER);
 
 		// Imagen de la playlist
-		ImageView img = new ImageView(new Image(getClass().getResourceAsStream("/img/john-face.png")));
+		ImageView img = new ImageView(new Image(getClass().getResourceAsStream("/img/playlist-img.png")));
 		img.setFitWidth(200);
 		img.setFitHeight(150);
 
