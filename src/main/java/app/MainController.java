@@ -157,7 +157,6 @@ public class MainController {
 		// Boton para cerrar la aplicacion y guarda la configuracion
 		exit.setOnAction(e -> {
 			ConfigController.guardarConfig(idPlaylistActual, idCancionActual, bailarin);
-			System.out.println(idCancionActual);
 			System.exit(0);
 		});
 
