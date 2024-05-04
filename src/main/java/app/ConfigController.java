@@ -22,9 +22,15 @@ public class ConfigController {
 	public static void guardarConfig(int idPlaylist, int idCancion, int bailarin) {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(CONFIG));
+
+			// Si el id de la playlist es menor o igual a cero ponemos la playlist de base
+			if (idPlaylist <= 0) {
+				idPlaylist = 1;
+			}
+
 			// Si el id de la canción es cero, lo pongo a la cancion inicial de la playlist
-			if (idCancion <= 0) {
-				idCancion = 1;
+			if (idCancion < 0) {
+				idCancion = 0;
 			}
 
 			// Si el id del bailarin es inferior a cero, lo pongo al bailarin inicial

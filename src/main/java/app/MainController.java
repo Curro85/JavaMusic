@@ -74,7 +74,7 @@ public class MainController {
 		// Leemos el fichero de configuracion para cargar el estado del reproductor
 		ConfigController.Configuracion config = ConfigController.cargarConfig();
 		int idPlaylist = config.getIdPlaylist();
-		int idCancion = config.getIdCancion();
+		int idCancion = config.getIdCancion() + 1;
 		bailarin = config.getBailarin();
 		dancer.setImage(new Image(getClass().getResourceAsStream(cambiarBailarin(bailarin))));
 
@@ -82,7 +82,7 @@ public class MainController {
 		CancionDAO.listarCanciones(con);
 
 		// Cargo una cancion y playlist al iniciar la aplicacion según configuración
-		idCancionActual = idCancion;
+		idCancionActual = idCancion - 1;
 		changePl(idPlaylist);
 		String song = CancionDAO.cargarCancion(con, idCancion);
 		Media sound = new Media(new File(song).toURI().toString());
@@ -152,6 +152,7 @@ public class MainController {
 		// Boton para cerrar la aplicacion y guarda la configuracion
 		exit.setOnAction(e -> {
 			ConfigController.guardarConfig(idPlaylistActual, idCancionActual, bailarin);
+			System.out.println(idCancionActual);
 			System.exit(0);
 		});
 
