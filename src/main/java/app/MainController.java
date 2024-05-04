@@ -26,6 +26,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -51,6 +52,10 @@ public class MainController {
 
 	@FXML
 	private Slider repSlider;
+
+	// HBox con canciones
+	@FXML
+	private HBox hb1, hb2, hb3, hb4, hb5;
 
 	// Labels
 	@FXML
@@ -119,27 +124,27 @@ public class MainController {
 		});
 
 		// OnClick para las labels y reproducir una cancion
-		lblUno.setOnMouseClicked(e -> {
+		hb1.setOnMouseClicked(e -> {
 			String titulo = lblUno.getText();
 			elegirCancion(titulo);
 		});
 
-		lblDos.setOnMouseClicked(e -> {
+		hb2.setOnMouseClicked(e -> {
 			String titulo = lblDos.getText();
 			elegirCancion(titulo);
 		});
 
-		lblTres.setOnMouseClicked(e -> {
+		hb3.setOnMouseClicked(e -> {
 			String titulo = lblTres.getText();
 			elegirCancion(titulo);
 		});
 
-		lblCuatro.setOnMouseClicked(e -> {
+		hb4.setOnMouseClicked(e -> {
 			String titulo = lblCuatro.getText();
 			elegirCancion(titulo);
 		});
 
-		lblCinco.setOnMouseClicked(e -> {
+		hb5.setOnMouseClicked(e -> {
 			String titulo = lblCinco.getText();
 			elegirCancion(titulo);
 		});

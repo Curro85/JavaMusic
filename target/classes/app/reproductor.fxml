@@ -205,7 +205,7 @@
 										</Label>
 									</children>
 								</HBox>
-								<HBox alignment="CENTER" prefHeight="56.0" prefWidth="348.0" styleClass="border-song" stylesheets="@../css/Style.css">
+								<HBox fx:id="hb1" alignment="CENTER" prefHeight="56.0" prefWidth="348.0" styleClass="border-song" stylesheets="@../css/Style.css">
 									<children>
 										<Label alignment="CENTER" prefHeight="30.0" prefWidth="29.0" text="1" textFill="#ababab">
 											<font>
@@ -226,8 +226,11 @@
 											</font>
 										</Label>
 									</children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
 								</HBox>
-								<HBox alignment="CENTER" layoutX="10.0" layoutY="66.0" prefHeight="56.0" prefWidth="348.0" styleClass="border-song" stylesheets="@../css/Style.css">
+								<HBox fx:id="hb2" alignment="CENTER" layoutX="10.0" layoutY="66.0" prefHeight="56.0" prefWidth="348.0" styleClass="border-song" stylesheets="@../css/Style.css">
 									<children>
 										<Label alignment="CENTER" prefHeight="30.0" prefWidth="29.0" text="2" textFill="#ababab">
 											<font>
@@ -251,8 +254,11 @@
 									<VBox.margin>
 										<Insets top="10.0" />
 									</VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
 								</HBox>
-								<HBox alignment="CENTER" prefHeight="56.0" prefWidth="348.0" styleClass="border-song" stylesheets="@../css/Style.css">
+								<HBox fx:id="hb3" alignment="CENTER" prefHeight="56.0" prefWidth="348.0" styleClass="border-song" stylesheets="@../css/Style.css">
 									<children>
 										<Label alignment="CENTER" prefHeight="30.0" prefWidth="29.0" text="3" textFill="#ababab">
 											<font>
@@ -276,8 +282,11 @@
 									<VBox.margin>
 										<Insets top="10.0" />
 									</VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
 								</HBox>
-								<HBox alignment="CENTER" prefHeight="56.0" prefWidth="348.0" styleClass="border-song" stylesheets="@../css/Style.css">
+								<HBox fx:id="hb4" alignment="CENTER" prefHeight="56.0" prefWidth="348.0" styleClass="border-song" stylesheets="@../css/Style.css">
 									<children>
 										<Label alignment="CENTER" prefHeight="30.0" prefWidth="29.0" text="4" textFill="#ababab">
 											<font>
@@ -301,8 +310,11 @@
 									<VBox.margin>
 										<Insets top="10.0" />
 									</VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
 								</HBox>
-								<HBox alignment="CENTER" prefHeight="56.0" prefWidth="348.0" styleClass="border-song" stylesheets="@../css/Style.css">
+								<HBox fx:id="hb5" alignment="CENTER" prefHeight="56.0" prefWidth="348.0" styleClass="border-song" stylesheets="@../css/Style.css">
 									<children>
 										<Label alignment="CENTER" prefHeight="30.0" prefWidth="29.0" text="5" textFill="#ababab">
 											<font>
@@ -326,6 +338,9 @@
 									<VBox.margin>
 										<Insets top="10.0" />
 									</VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
 								</HBox>
 								<HBox alignment="CENTER" prefHeight="56.0" prefWidth="348.0">
 									<children>
@@ -372,7 +387,7 @@
 								</Label>
 								<Button fx:id="john" mnemonicParsing="false" onAction="#john" prefHeight="10.0" prefWidth="16.0" styleClass="john" stylesheets="@../css/Style.css">
 									<cursor>
-										<Cursor fx:constant="NONE" />
+										<Cursor fx:constant="WAIT" />
 									</cursor>
 									<VBox.margin>
 										<Insets />
