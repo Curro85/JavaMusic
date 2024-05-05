@@ -70,16 +70,16 @@ public class MainController {
 	private int bailarin = 0;
 
 	// Metodos
+	@FXML
 	/**
 	 * Metodo inicial que carga la configuracion inicial de la aplicacion con una
 	 * playlist y una cancion a reproducir
 	 */
-	@FXML
 	private void initialize() {
 		// Leemos el fichero de configuracion para cargar el estado del reproductor
 		ConfigController.Configuracion config = ConfigController.cargarConfig();
 		int idPlaylist = config.getIdPlaylist();
-		int idCancion = config.getIdCancion() + 1;
+		int idCancion = config.getIdCancion() + 1; // Sumamos uno al id para que coincida con el id de BD
 		bailarin = config.getBailarin();
 		dancer.setImage(new Image(getClass().getResourceAsStream(cambiarBailarin(bailarin))));
 
@@ -87,7 +87,7 @@ public class MainController {
 		CancionDAO.listarCanciones(con);
 
 		// Cargo una cancion y playlist al iniciar la aplicacion según configuración
-		idCancionActual = idCancion - 1;
+		idCancionActual = idCancion - 1; // Restamos uno para que coincida con la posicion en el array
 		changePl(idPlaylist);
 		String song = CancionDAO.cargarCancion(con, idCancion);
 		Media sound = new Media(new File(song).toURI().toString());
@@ -189,80 +189,80 @@ public class MainController {
 		reproducir(null);
 	}
 
+	@FXML
 	/**
 	 * Metodo para abrir la ventana de registro
 	 */
-	@FXML
 	private void registro() {
 		Registro rg = new Registro();
 		Stage stage = new Stage();
 		rg.start(stage);
 	}
 
+	@FXML
 	/**
 	 * Metodo para abrir la ventana de ayuda
 	 */
-	@FXML
 	private void ayuda() {
 		Ayuda ayuda = new Ayuda();
 		Stage stage = new Stage();
 		ayuda.start(stage);
 	}
 
+	@FXML
 	/**
 	 * Metodo para abrir la ventana acerca de
 	 */
-	@FXML
 	private void acercaDe() {
 		Acercade acerca = new Acercade();
 		Stage stage = new Stage();
 		acerca.start(stage);
 	}
 
+	@FXML
 	/**
 	 * Metodo para abrir la ventana de perfil
 	 */
-	@FXML
 	private void abrirPerfil() {
 		Perfil perfil = new Perfil();
 		Stage stage = new Stage();
 		perfil.start(stage);
 	}
 
+	@FXML
 	/**
 	 * Metodo para abrir la ventana sugerencias
 	 */
-	@FXML
 	private void sugerencias() {
 		Sugerencias sg = new Sugerencias();
 		Stage stage = new Stage();
 		sg.start(stage);
 	}
 
+	@FXML
 	/**
 	 * Metodo para la ventana crear Playlist
 	 */
-	@FXML
 	private void crearPlaylist() {
 		CrearPlaylistPanel pl = new CrearPlaylistPanel();
 		Stage stage = new Stage();
 		pl.start(stage);
 	}
 
+	@FXML
 	/**
 	 * Metodo para la ventana borrar Playlist
 	 */
-	@FXML
 	private void borrarPlaylist() {
 		BorrarPlaylistPanel pl = new BorrarPlaylistPanel();
 		Stage stage = new Stage();
 		pl.start(stage);
 	}
 
+	@FXML
 	/**
 	 * Metodo para la ventana cambiar Playlist
 	 */
-	@FXML
 	private void cambiarPlaylist() {
 		CambiarPlaylistPanel pl = new CambiarPlaylistPanel(this);
 		Stage stage = new Stage();
@@ -304,10 +304,10 @@ public class MainController {
 
 	}
 
+	@FXML
 	/**
 	 * Metodo para mostrar u ocultar el bailarn
 	 */
-	@FXML
 	private void bailarin() {
 		if (dancer.isVisible()) {
 			dancer.setVisible(false);
@@ -342,10 +342,10 @@ public class MainController {
 		}
 	}
 
+	@FXML
 	/**
 	 * Metodo que muestra la duracion de la cancion
 	 */
-	@FXML
 	private void duracionTotal() {
 		// Obtengo la cancion actual en reproduccion
 		String total = CancionDAO.listarCanciones(con).get(idCancionActual).getDuracion();
@@ -359,11 +359,11 @@ public class MainController {
 		repSlider.setMax((min * 60) + sec);
 	}
 
+	@FXML
 	/**
 	 * Metodo que "observa" la reproduccion y ajusta el slider segun el momento en
 	 * el que esté la canción
 	 */
-	@FXML
 	private void sincSlider() {
 		// Creo una "escucha" al tiempo que me pasa el reproductor y actualizo su valor
 		// conforme avanza para así obtener el tiempo de la cancion
@@ -402,13 +402,14 @@ public class MainController {
 		return String.format("%02d:%02d", min, sec);
 	}
 
+	@FXML
 	/**
-	 * Metodo para reproducir las canciones
+	 * Metodo para reproducir las canciones o pausarlas
 	 * 
 	 * @param e
 	 */
-	@FXML
 	private void reproducir(ActionEvent e) {
+		// Si está en reproduccion lo pauso
 		if (isPlaying) {
 			mp.pause();
 			playImg.setVisible(true);
@@ -421,17 +422,18 @@ public class MainController {
 			startStop.setGraphic(pauseImg);
 		}
 
+		// Actualizo el estado del reproductor a su contrario
 		isPlaying = !isPlaying;
 	}
 
+	@FXML
 	/**
 	 * Metodo para pasar a la siguiente cancion
 	 * 
 	 * @param e
 	 */
-	@FXML
 	private void siguienteCancion(ActionEvent e) {
-		// Si el reproductor está activo lo pauso
+		// Si el reproductor está activo lo paro
 		if (mp != null) {
 			mp.stop();
 			isPlaying = false;
@@ -460,17 +462,18 @@ public class MainController {
 		pauseImg.setVisible(true);
 		startStop.setGraphic(pauseImg);
 
+		// Actualizo el estado del reproductor
 		isPlaying = true;
 	}
 
+	@FXML
 	/**
 	 * Metodo para retroceder en las canciones
 	 * 
 	 * @param e
 	 */
-	@FXML
 	private void anteriorCancion(ActionEvent e) {
-		// Si el reproductor está activo lo pauso
+		// Si el reproductor está activo lo paro
 		if (mp != null) {
 			mp.stop();
 			isPlaying = false;
@@ -499,16 +502,18 @@ public class MainController {
 		pauseImg.setVisible(true);
 		startStop.setGraphic(pauseImg);
 
+		// Actualizo el estado del reproductor
 		isPlaying = true;
 	}
 
+	@FXML
 	/**
 	 * Metodo para detener la reproduccion
 	 * 
 	 * @param e
 	 */
-	@FXML
 	private void detener(ActionEvent e) {
+		// Si el reproductor está activo, lo paro
 		if (mp != null) {
 			mp.stop();
 			dancer.setVisible(false);
