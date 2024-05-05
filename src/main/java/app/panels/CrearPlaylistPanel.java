@@ -41,19 +41,19 @@ public class CrearPlaylistPanel extends Application {
 
 		// Labels del lado izquierdo
 		Label lbl1 = new Label();
-		lbl1.setText(PlaylistDAO.cancionesPlaylist(con, 1).get(0));
+		lbl1.setText(PlaylistDAO.cancionesPlaylist(con, 2).get(0));
 		lbl1.getStyleClass().add("label-cancion");
 		Label lbl2 = new Label();
-		lbl2.setText(PlaylistDAO.cancionesPlaylist(con, 1).get(2));
+		lbl2.setText(PlaylistDAO.cancionesPlaylist(con, 2).get(2));
 		lbl2.getStyleClass().add("label-cancion");
 		Label lbl3 = new Label();
-		lbl3.setText(PlaylistDAO.cancionesPlaylist(con, 1).get(4));
+		lbl3.setText(PlaylistDAO.cancionesPlaylist(con, 2).get(4));
 		lbl3.getStyleClass().add("label-cancion");
 		Label lbl4 = new Label();
-		lbl4.setText(PlaylistDAO.cancionesPlaylist(con, 1).get(6));
+		lbl4.setText(PlaylistDAO.cancionesPlaylist(con, 2).get(6));
 		lbl4.getStyleClass().add("label-cancion");
 		Label lbl5 = new Label();
-		lbl5.setText(PlaylistDAO.cancionesPlaylist(con, 1).get(8));
+		lbl5.setText(PlaylistDAO.cancionesPlaylist(con, 2).get(8));
 		lbl5.getStyleClass().add("label-cancion");
 
 		// Margenes de los labels
@@ -86,23 +86,23 @@ public class CrearPlaylistPanel extends Application {
 
 		// Labels para introducir en el VBox derecho
 		Label lbl1R = new Label();
-		lbl1R.setText(PlaylistDAO.cancionesPlaylist(con, 1).get(0));
+		lbl1R.setText(PlaylistDAO.cancionesPlaylist(con, 2).get(0));
 		lbl1R.getStyleClass().add("label-cancion");
 		lbl1R.setVisible(false);
 		Label lbl2R = new Label();
-		lbl2R.setText(PlaylistDAO.cancionesPlaylist(con, 1).get(2));
+		lbl2R.setText(PlaylistDAO.cancionesPlaylist(con, 2).get(2));
 		lbl2R.getStyleClass().add("label-cancion");
 		lbl2R.setVisible(false);
 		Label lbl3R = new Label();
-		lbl3R.setText(PlaylistDAO.cancionesPlaylist(con, 1).get(4));
+		lbl3R.setText(PlaylistDAO.cancionesPlaylist(con, 2).get(4));
 		lbl3R.getStyleClass().add("label-cancion");
 		lbl3R.setVisible(false);
 		Label lbl4R = new Label();
-		lbl4R.setText(PlaylistDAO.cancionesPlaylist(con, 1).get(6));
+		lbl4R.setText(PlaylistDAO.cancionesPlaylist(con, 2).get(6));
 		lbl4R.getStyleClass().add("label-cancion");
 		lbl4R.setVisible(false);
 		Label lbl5R = new Label();
-		lbl5R.setText(PlaylistDAO.cancionesPlaylist(con, 1).get(8));
+		lbl5R.setText(PlaylistDAO.cancionesPlaylist(con, 2).get(8));
 		lbl5R.getStyleClass().add("label-cancion");
 		lbl5R.setVisible(false);
 
